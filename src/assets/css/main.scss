@@ -1,0 +1,305 @@
+@import "./config";
+body {
+  background: $dashboardBg;
+}
+.navbar {
+  height: 88px;
+  background: $white;
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  .logo {
+    flex: 1;
+    img {
+      height: 100%;
+    }
+  }
+  .nav_menu {
+    flex: 3;
+    @include centerFlex();
+    gap: 24px;
+    .nav_link {
+      color: $gray;
+      font-size: 14px;
+      font-weight: 500;
+      position: relative;
+      transition: $transation;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px;
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 6px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: $main;
+        transition: $transation;
+      }
+      &.active {
+        color: $main;
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .user_dropdown {
+    flex: 1;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 12px;
+    .user {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: $inputBG;
+      @include centerFlex();
+      border: 1px solid $border;
+      position: relative;
+      .status {
+        position: absolute;
+        bottom: 0;
+        right: -2px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: $second20;
+        border: 1px solid $white;
+      }
+    }
+  }
+}
+.main {
+  padding: 64px 0;
+  .page_header {
+    background: $white;
+    padding: 24px 40px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    .home {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h6,
+    a {
+      margin: 0;
+      color: $main;
+      line-height: 18px;
+      padding: 8px 12px;
+      &.active {
+        background: $second20;
+        border-radius: 6px;
+      }
+    }
+  }
+  .inner_card {
+    background: $white;
+    padding: 24px;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    .header {
+      @include space-between();
+      h1 {
+        font-weight: 600;
+        margin: 0;
+        font-size: 24px;
+      }
+      .search_form {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        .input_field {
+          background: $inputBG;
+          border: 1px solid $border;
+          border-radius: 50px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 5px 24px;
+          img {
+            width: 24px;
+          }
+          input {
+            @include clearInput();
+          }
+        }
+        button,
+        a {
+          outline: none;
+          border: none;
+          background: $second;
+          padding: 6px 24px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          color: $white;
+          border-radius: 50px;
+        }
+      }
+    }
+    .day_field {
+      width: 100%;
+      .content {
+        display: flex;
+        border: 1px solid $border;
+        padding: 12px;
+        border-radius: 16px;
+        gap: 8px;
+        align-items: center;
+        justify-content: center;
+        background: $inputBG;
+        flex-direction: column;
+        cursor: pointer;
+        h6 {
+          margin: 0;
+        }
+      }
+      input {
+        appearance: none;
+        display: none;
+        &:checked + .content {
+          background: $second20;
+          color: $second;
+          border: 1px solid $second;
+        }
+      }
+    }
+    .lottery_card {
+      width: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      background: $cardBg;
+      border: 1px solid $border;
+      .img {
+        width: 100%;
+        aspect-ratio: 3 / 2.5;
+        position: relative;
+        img {
+          width: 100%;
+          height: 100%;
+          object-position: center;
+          object-fit: cover;
+        }
+        .timer {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          background: #FFFFFFd9;
+          z-index: 9;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 12px 0;
+          gap: 8px;
+          .center {
+            padding-bottom: 20px !important;
+          }
+          .block {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            span {
+              line-height: 26px;
+            }
+          }
+          .box {
+            border: 1px solid $second;
+            color: $main;
+            @include centerFlex();
+            padding: 2px 8px;
+            border-radius: 8px;
+            line-height: 25px;
+          }
+        }
+      }
+      .content {
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+        h4 {
+          color: $main;
+          font-size: 18px;
+          font-weight: 600;
+          margin-bottom: 8px;
+        }
+        p {
+          margin: 0;
+          display: flex;
+          gap: 8px;
+          align-items: center;
+          font-size: 12px;
+          img {
+            height: 16px;
+          }
+        }
+      }
+      .view_lottery {
+        width: 100%;
+        padding: 12px 16px;
+        border-top: 1px solid $border;
+        color: $main;
+        @include centerFlex();
+        background: $inputBG;
+      }
+    }
+    .lotteries-pagination {
+      display: flex;
+      justify-content: center;
+      .swiper-pagination-bullet {
+        background: $second;
+        width: 20px;
+        height: 6px;
+        border-radius: 12px;
+        &.swiper-pagination-bullet-active {
+          width: 48px;
+          transition: $transation;
+        }
+      }
+    }
+    .lotteries_type {
+      width: 100%;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      background: $cardBg;
+      border-radius: 200px;
+      border: 1px solid $dashboardBg;
+      label {
+        flex: 1;
+        cursor: pointer;
+        width: 100%;
+        .content {
+          @include centerFlex();
+          padding: 12px;
+          border-radius: 200px;
+          transition: $transation;
+          h3 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: $main;
+          }
+        }
+        input {
+          appearance: none;
+          display: none;
+          &:checked + .content {
+            background: #e4eeff;
+            color: $second;
+          }
+        }
+      }
+    }
+  }
+}
