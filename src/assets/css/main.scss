@@ -682,12 +682,27 @@ body {
   @include centerFlex();
   flex-direction: column;
   padding: 24px;
-  gap: 24px;
+  gap: 12px;
   img {
     height: 274px;
   }
   h5 {
     font-size: 20px;
     color: $main;
+  }
+  button,
+  a {
+    img {
+      height: 16px;
+    }
+    outline: none;
+    border: none;
+    background: $second;
+    padding: 6px 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: $white;
+    border-radius: 50px;
   }
 }

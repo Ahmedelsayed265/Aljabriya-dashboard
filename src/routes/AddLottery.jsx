@@ -3,6 +3,7 @@ import PageHeader from "../components/PageHeader";
 import DetailsForm from "../components/add-lottery/DetailsForm";
 import MediaForm from "../components/add-lottery/MediaForm";
 import RulesForm from "../components/add-lottery/RulesForm";
+import ParticipantsForm from "../components/add-lottery/ParticipantsForm";
 
 const stepsAr = {
   details: "إضافة تفاصيل  القرعة",
@@ -76,6 +77,13 @@ export default function AddLottery() {
               )}
               {form === "rules" && (
                 <RulesForm
+                  formData={formData}
+                  setForm={setForm}
+                  setFormData={setFormData}
+                />
+              )}
+              {form === "participants" && (
+                <ParticipantsForm
                   formData={formData}
                   setForm={setForm}
                   setFormData={setFormData}

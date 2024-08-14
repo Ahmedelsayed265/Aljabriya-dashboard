@@ -894,7 +894,7 @@ body {
   justify-content: center;
   flex-direction: column;
   padding: 24px;
-  gap: 24px;
+  gap: 12px;
 }
 .empty_data img {
   height: 274px;
@@ -902,4 +902,20 @@ body {
 .empty_data h5 {
   font-size: 20px;
   color: #121212;
+}
+.empty_data button,
+.empty_data a {
+  outline: none;
+  border: none;
+  background: #0045ba;
+  padding: 6px 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  border-radius: 50px;
+}
+.empty_data button img,
+.empty_data a img {
+  height: 16px;
 }/*# sourceMappingURL=main.css.map */
