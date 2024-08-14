@@ -1,4 +1,4 @@
-import PageHeader from "../assets/components/PageHeader";
+import PageHeader from "../components/PageHeader";
 
 export default function Investors() {
   return (

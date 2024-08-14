@@ -1,6 +1,6 @@
-import slide1 from "../images/sportClub.png";
-import users from "../images/users.svg";
-import calender from "../images/calendar.svg";
+import slide1 from "../assets/images/sportClub.png";
+import users from "../assets/images/users.svg";
+import calender from "../assets/images/calendar.svg";
 import { Link } from "react-router-dom";
 
 export default function LotteryCard() {

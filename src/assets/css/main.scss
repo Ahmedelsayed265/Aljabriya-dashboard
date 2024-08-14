@@ -301,5 +301,393 @@ body {
         }
       }
     }
+    .wizard_tabs {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      .tab {
+        flex: 1;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-bottom: 3px solid $border;
+        padding: 16px;
+        transition: $transation;
+        cursor: pointer;
+        .circle_icon {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          border: 2px solid $border;
+          @include centerFlex();
+          position: relative;
+          transition: $transation;
+          span {
+            content: "";
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: $border;
+            @include centerAbsolute();
+            transition: $transation;
+          }
+        }
+        h6 {
+          color: $gray;
+          margin: 0;
+          transition: $transation;
+        }
+        &.active {
+          border-bottom: 3px solid $second;
+          .circle_icon {
+            border-color: $second;
+            span {
+              background: $second;
+            }
+          }
+          h6 {
+            color: $second;
+          }
+        }
+      }
+    }
+  }
+}
+.form_ui {
+  width: 100%;
+  .input-field {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    input,
+    select,
+    textarea {
+      width: 100%;
+      height: 52px;
+      display: block;
+      outline: none;
+      border: 1px solid $border;
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: $main;
+      box-shadow: none !important;
+      &::placeholder {
+        color: $gray;
+      }
+    }
+    textarea {
+      height: 152px;
+      line-height: 24px;
+    }
+    label {
+      color: $gray;
+      font-weight: 500;
+      span {
+        font-size: 12px;
+        color: $gray;
+      }
+    }
+    select {
+      color: $main;
+      cursor: pointer;
+      &.disable {
+        pointer-events: none;
+        background: $border;
+        color: $grayLight;
+      }
+    }
+    &.files {
+      .filepond--root .filepond--drop-label {
+        min-height: 100%;
+        label {
+          color: $inputHint;
+          font-size: 14px !important;
+          font-weight: 400 !important;
+          line-height: 18px !important;
+        }
+      }
+    }
+    .checkboxs_inputs {
+      display: flex;
+      width: 100%;
+      height: 54px;
+      border: 1px solid $inputStroke;
+      border-radius: 12px;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      label {
+        cursor: pointer;
+        flex: 1;
+        @include centerFlex();
+        span {
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 20px;
+          color: $main;
+          cursor: pointer;
+          transition: $transation;
+        }
+        input {
+          display: none;
+          appearance: none;
+          &:checked + span {
+            color: $white;
+          }
+        }
+      }
+      .bg-active {
+        transition: $transation;
+        position: absolute;
+        content: "";
+        top: 0;
+        transform: translateX(0);
+        height: 100%;
+        width: 50%;
+        z-index: -1;
+        background: $main;
+        border-radius: 12px;
+        &.refuse {
+          transform: translateX(100%);
+        }
+      }
+    }
+    .filepond--root .filepond--drop-label label {
+      color: #e2e2e2 !important;
+      &.mainImg {
+        color: $main !important;
+      }
+    }
+  }
+  .check_field {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px dashed $inputHint;
+    border-radius: 12px;
+    .form-check {
+      width: 100%;
+      @include space-between();
+      flex-direction: row-reverse;
+      padding-left: 0 !important;
+      input {
+        cursor: pointer;
+        box-shadow: none !important;
+      }
+      label {
+        width: 100%;
+        display: block;
+        cursor: pointer;
+      }
+    }
+  }
+  .title {
+    font-size: 16px;
+    color: $main;
+    font-weight: 600;
+  }
+  .img_field {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+    width: fit-content;
+    .img {
+      background: #f5f5f5;
+      border: 1px solid $border;
+      width: 100px;
+      height: 100px;
+      overflow: hidden;
+      border-radius: 50%;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+    .upload {
+      width: fit-content;
+      input {
+        display: none;
+      }
+      .content {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        border: 1px solid $second;
+        padding: 2px 32px;
+        border-radius: 60px;
+        p {
+          margin: 0;
+          color: $second;
+        }
+      }
+    }
+  }
+  .images_upload_field {
+    border: 1px solid $border;
+    border-radius: 12px;
+    padding: 24px;
+    width: 100%;
+    @include centerFlex();
+    flex-direction: column;
+    cursor: pointer;
+    input {
+      display: none;
+    }
+    .content {
+      @include centerFlex();
+      flex-direction: column;
+      .icon {
+        box-shadow: 0px 1px 2px 0px #1018280D;
+        @include centerFlex();
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        border: 1px solid $border;
+        margin-bottom: 16px;
+      }
+      h6 {
+        color: $second;
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      p {
+        margin: 0;
+        color: gray;
+      }
+    }
+  }
+}
+.select_addon_row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  button {
+    min-width: 52px;
+    border-radius: 8px;
+    height: 52px;
+    background: $second;
+    @include centerFlex();
+    &.delete {
+      background: #fef2f2;
+    }
+  }
+  .input-field {
+    input,
+    select {
+      background: $white;
+    }
+    flex: 3;
+    width: 100%;
+    &:last-child {
+      flex: 1;
+    }
+  }
+}
+.next,
+.prev {
+  padding: 6px 36px;
+  border: 1px solid $second;
+  border-radius: 60px;
+  color: $second;
+}
+.next {
+  background: $second;
+  color: $white;
+}
+.pagination_component {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  user-select: none;
+  justify-content: center;
+  img {
+    opacity: 50%;
+    transition: opacity 0.2s;
+  }
+  button:hover {
+    img {
+      opacity: 100%;
+    }
+  }
+  button.disabled:hover {
+    img {
+      opacity: 50%;
+    }
+    cursor: default;
+  }
+  p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    span {
+      color: $main;
+      font-weight: 600;
+    }
+  }
+}
+.numbers {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  button {
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    font-size: 15px;
+    color: $main;
+    font-weight: 500;
+    transition: 0.2s;
+    &:hover {
+      background: $cardBg;
+    }
+    &.active {
+      background: $second20;
+    }
+  }
+}
+.paginator_btns {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  button {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    @include centerFlex();
+    cursor: pointer;
+    i {
+      color: $gray;
+      font-size: 18px;
+    }
+    &.disabled {
+      opacity: 50%;
+      pointer-events: none;
+    }
+    &:hover i {
+      color: $main;
+    }
+  }
+}
+.empty_data {
+  @include centerFlex();
+  flex-direction: column;
+  padding: 24px;
+  gap: 24px;
+  img {
+    height: 274px;
+  }
+  h5 {
+    font-size: 20px;
+    color: $main;
   }
 }

@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../assets/images/logo.svg";
-import user from "../../assets/images/user.svg";
-import arrow from "../../assets/images/arrowDown.svg";
+import logo from "../assets/images/logo.svg";
+import user from "../assets/images/user.svg";
+import arrow from "../assets/images/arrowDown.svg";
 
 export default function Navbar() {
   return (

@@ -1,10 +1,11 @@
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
-import PageHeader from "../assets/components/PageHeader";
+import PageHeader from "../components/PageHeader";
 import filterIcon from "../assets/images/filter.svg";
 import searchIcon from "../assets/images/search.svg";
-import DaysSliderFilter from "../assets/components/DaysSliderFilter";
-import LotteriesSlider from "../assets/components/LotteriesSlider";
+import DaysSliderFilter from "../components/DaysSliderFilter";
+import LotteriesSlider from "../components/LotteriesSlider";
+import Pagination from "../ui/Pagination";
 
 export default function Home() {
   const lotteries = [
@@ -140,6 +141,7 @@ export default function Home() {
                   <Column field="" header="" />
                 </DataTable>
               </div>
+              <Pagination count={30} />
             </div>
           </div>
         </div>

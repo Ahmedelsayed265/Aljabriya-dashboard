@@ -1,9 +1,10 @@
 import { DataTable } from "primereact/datatable";
-import PageHeader from "../assets/components/PageHeader";
+import PageHeader from "../components/PageHeader";
 import plusIcon from "../assets/images/plus.svg";
 import searchIcon from "../assets/images/search.svg";
 import { Column } from "primereact/column";
 import { Link } from "react-router-dom";
+import Pagination from "../ui/Pagination";
 
 export default function Lotteries() {
   const lotteries = [
@@ -144,6 +145,8 @@ export default function Lotteries() {
                   <Column field="" header="" />
                 </DataTable>
               </div>
+
+              <Pagination count={30} />
             </div>
           </div>
         </div>
