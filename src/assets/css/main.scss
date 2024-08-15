@@ -354,6 +354,43 @@ body {
     }
   }
 }
+.login {
+  width: 100dvw;
+  height: 100dvh;
+  @include centerFlex();
+  .login_form {
+    width: 50%;
+    background: $white;
+    padding: 32px 24px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+    .logo img {
+      height: 100px;
+    }
+    h1 {
+      font-size: 24px;
+      color: $main;
+      font-weight: 600;
+    }
+    .form_ui {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      button {
+        width: 100%;
+        height: 52px;
+        background: $second;
+        color: $white;
+        border-radius: 8px;
+        font-size: 16px;
+        margin-top: 16px;
+      }
+    }
+  }
+}
 .form_ui {
   width: 100%;
   .input-field {
