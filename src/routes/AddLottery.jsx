@@ -19,14 +19,16 @@ export default function AddLottery() {
   };
   const [form, setForm] = useState("details");
   const [formData, setFormData] = useState({
-    name: "",
-    live: "",
-    age_from: "",
-    age_to: "",
-    last_register_date: "",
     categories: [categoriesInitial],
-    main_image: "",
-    images: [],
+    title: "",
+    description: "",
+    live_link: "",
+    from_age: "",
+    to_age: "",
+    policy: "",
+    image: "",
+    last_register_date: "",
+    lottery_images: [],
     rules: []
   });
 

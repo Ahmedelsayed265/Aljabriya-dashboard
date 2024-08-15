@@ -5,6 +5,8 @@ import Lotteries from "./routes/Lotteries";
 import Investors from "./routes/Investors";
 import AddLottery from "./routes/AddLottery";
 import Login from "./routes/Login";
+import Settings from "./routes/Settings";
+import SliderSettings from "./routes/SliderSettings";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
                     path="/lotteries/add-lottery"
                     element={<AddLottery />}
                   />
+                  <Route path="/account-settings" element={<Settings />} />
+                  <Route path="/slider-settings" element={<SliderSettings />} />
                   <Route path="/investors" element={<Investors />} />
                 </Routes>
               </main>

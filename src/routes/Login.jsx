@@ -38,6 +38,7 @@ export default function Login() {
             type="text"
             name="username"
             id="username"
+            required
             value={formData.username}
             onChange={(e) =>
               setFormData({ ...formData, username: e.target.value })
@@ -49,6 +50,7 @@ export default function Login() {
             type="password"
             name="password"
             id="password"
+            required
             value={formData.password}
             onChange={(e) =>
               setFormData({ ...formData, password: e.target.value })

@@ -5,6 +5,13 @@ import { Column } from "primereact/column";
 import { handleChange } from "../../utils/helpers";
 
 export default function MediaForm({ formData, setFormData, setForm }) {
+  const imageTemplate = (rowData) => {
+    return (
+      <div className="row_img">
+        <img src={URL.createObjectURL(rowData)} alt={``} />
+      </div>
+    )
+  }
   return (
     <form className="form_ui">
       <div className="row m-0">
@@ -12,8 +19,8 @@ export default function MediaForm({ formData, setFormData, setForm }) {
           <label className="images_upload_field">
             <input
               type="file"
-              name="images"
-              id="images"
+              name="lottery_images"
+              id="lottery_images"
               multiple
               onChange={(e) => handleChange(e, setFormData)}
             />
@@ -26,7 +33,7 @@ export default function MediaForm({ formData, setFormData, setForm }) {
             </div>
           </label>
         </div>
-        {formData.images.length === 0 ? (
+        {formData.lottery_images.length === 0 ? (
           <div className="col-12 p-2">
             <div className="empty_data">
               <img src={noData} alt="no-data" />
@@ -38,7 +45,7 @@ export default function MediaForm({ formData, setFormData, setForm }) {
             <div className="table-container">
               <DataTable value="">
                 <Column field="index" header="م" />
-                <Column field="name" header="الصورة" />
+                <Column field="image" body={imageTemplate} header="الصورة" />
                 <Column field="" header="" />
               </DataTable>
             </div>

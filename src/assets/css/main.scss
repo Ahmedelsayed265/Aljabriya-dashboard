@@ -1,7 +1,9 @@
 @import "./config";
+
 body {
   background: $dashboardBg;
 }
+
 .navbar {
   height: 88px;
   background: $white;
@@ -18,6 +20,9 @@ body {
     flex: 3;
     @include centerFlex();
     gap: 24px;
+    li {
+      position: relative;
+    }
     .nav_link {
       color: $gray;
       font-size: 14px;
@@ -26,8 +31,10 @@ body {
       transition: $transation;
       display: flex;
       align-items: center;
+      cursor: pointer;
       gap: 8px;
       padding: 4px;
+      position: relative;
       &::after {
         content: "";
         position: absolute;
@@ -51,8 +58,13 @@ body {
     flex: 1;
     display: flex;
     justify-content: end;
-    align-items: center;
-    gap: 12px;
+    .button_drop {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
     .user {
       width: 42px;
       height: 42px;
@@ -74,6 +86,53 @@ body {
     }
   }
 }
+
+.dropMenu {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  width: 200px;
+  transform: translateX(-50%);
+  border-radius: 24px;
+  padding: 16px 24px;
+  background: $white;
+  box-shadow: 0px 0px 0px 1px #0000000D, 0px 4px 6px -2px #0000000D,
+    0px 10px 15px -3px #0000001A;
+  display: none;
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .nav_link {
+    gap: 16px !important;
+    display: flex;
+    align-items: center;
+    .icon {
+      width: 32px;
+      height: 32px;
+      background: $second;
+      border-radius: 8px;
+      @include centerFlex();
+      img {
+        height: 16px;
+      }
+    }
+    h6 {
+      margin: 0;
+      font-size: 14px;
+      color: $main;
+      font-weight: 600;
+    }
+    &::after {
+      display: none;
+    }
+  }
+  &.show {
+    display: block;
+  }
+}
+
 .main {
   padding: 64px 0;
   .page_header {
@@ -354,6 +413,7 @@ body {
     }
   }
 }
+
 .login {
   width: 100dvw;
   height: 100dvh;
@@ -391,6 +451,7 @@ body {
     }
   }
 }
+
 .form_ui {
   width: 100%;
   .input-field {
@@ -536,11 +597,20 @@ body {
       height: 100px;
       overflow: hidden;
       border-radius: 50%;
+      @include centerFlex();
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         object-position: center;
+      }
+    }
+    .icon {
+      width: 50%;
+      height: 50%;
+      display: flex;
+      img {
+        object-fit: contain;
       }
     }
     .upload {

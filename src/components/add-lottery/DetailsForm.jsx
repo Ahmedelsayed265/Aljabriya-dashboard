@@ -9,7 +9,7 @@ export default function DetailsForm({
   formData,
   setForm,
   setFormData,
-  categoriesInitial
+  categoriesInitial,
 }) {
   return (
     <form className="form_ui">
@@ -18,10 +18,11 @@ export default function DetailsForm({
           <InputField
             label="اسم القرعة"
             placeholder="أدخل اسم القرعة"
-            id="name"
-            name="name"
+            id="title"
+            name="title"
             type="text"
-            value={formData.name}
+            required
+            value={formData.title}
             onChange={(e) => handleChange(e, setFormData)}
           />
         </div>
@@ -29,10 +30,10 @@ export default function DetailsForm({
           <InputField
             label="رابط البث المباشر"
             placeholder="أدخل رابط البث المباشر"
-            id="live"
-            name="live"
+            id="live_link"
+            name="live_link"
             type="url"
-            value={formData.live}
+            value={formData.live_link}
             onChange={(e) => handleChange(e, setFormData)}
           />
         </div>
@@ -41,21 +42,21 @@ export default function DetailsForm({
             <label>السن</label>
             <div className="d-flex gap-2">
               <FromToInput
-                id="age_from"
-                name="age_from"
+                id="from_age"
+                name="from_age"
                 placeholder="١٨"
                 type="number"
                 label="من"
-                value={formData.age_from}
+                value={formData.from_age}
                 onChange={(e) => handleChange(e, setFormData)}
               />
               <FromToInput
-                id="age_from"
-                name="age_from"
+                id="to_age"
+                name="to_age"
                 type="number"
                 placeholder="٦٠"
                 label="الي"
-                value={formData.age_from}
+                value={formData.to_age}
                 onChange={(e) => handleChange(e, setFormData)}
               />
             </div>
@@ -93,10 +94,10 @@ export default function DetailsForm({
           <InputField
             label="الشروط والاحكام"
             placeholder="أدخل الشروط والاحكام"
-            id="terms_and_conditions"
-            name="terms_and_conditions"
+            id="policy"
+            name="policy"
             as="textarea"
-            value={formData.terms_and_conditions}
+            value={formData.policy}
             onChange={(e) => handleChange(e, setFormData)}
           />
         </div>
@@ -104,16 +105,31 @@ export default function DetailsForm({
           <h3 className="title">إضافة صورة رئيسية</h3>
           <div className="img_field">
             <div className="img">
-              <img src={imgPlaceholder} alt="Main" />
+              {formData.image === "" ? (
+                <span className="icon">
+                  <img src={imgPlaceholder} alt="Main" />
+                </span>
+              ) : (
+                <img
+                  src={
+                    formData.image.type.startsWith("image/")
+                      ? URL.createObjectURL(formData.image)
+                      : formData.image
+                  }
+                  alt="Main"
+                />
+              )}
             </div>
-            <label htmlFor="main_image" className="upload">
+            <label htmlFor="image" className="upload">
               <input
                 type="file"
-                name="main_image"
-                id="main_image"
+                name="image"
+                id="image"
                 accept="image/*"
                 multiple={false}
-                onChange={(e) => handleChange(e, setFormData)}
+                onChange={(e) =>
+                  setFormData({ ...formData, image: e.target.files[0] })
+                }
               />
               <div className="content">
                 <img src={upload} alt="upload" />
