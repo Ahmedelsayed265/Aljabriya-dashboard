@@ -1,13 +1,22 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useCookies } from "react-cookie";
+import { axiosInstance } from "./../utils/axiosInstance";
+import { toast } from "react-toastify";
+import { errorHandle } from "../utils/helpers";
+import { logout } from "../redux/authedUser";
 import logo from "../assets/images/logo.svg";
 import user from "../assets/images/user.svg";
 import arrow from "../assets/images/arrowDown.svg";
 import dots from "../assets/images/dots.svg";
 import settings from "../assets/images/settings.svg";
-import logout from "../assets/images/logout.svg";
+import logoutIcon from "../assets/images/logout.svg";
 
 export default function Navbar() {
+  const dispatch = useDispatch();
+  const [, , removeCookie] = useCookies(["token", "id"]);
+  const navigate = useNavigate();
   const settingMenuRef = useRef(null);
   const userMenuRef = useRef(null);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
@@ -39,12 +48,28 @@ export default function Navbar() {
 
   const handleSettingsToggle = () => {
     setShowSettingsModal(!showSettingsModal);
-    if (!showSettingsModal) setShowUserModal(false); // Close user modal when opening settings
+    if (!showSettingsModal) setShowUserModal(false);
   };
 
   const handleUserToggle = () => {
     setShowUserModal(!showUserModal);
-    if (!showUserModal) setShowSettingsModal(false); // Close settings modal when opening user
+    if (!showUserModal) setShowSettingsModal(false);
+  };
+
+  const handleLogout = async () => {
+    try {
+      const res = await axiosInstance.post("/auth/logout");
+      if (res.status === 200) {
+        removeCookie("token", { path: "/" });
+        removeCookie("id", { path: "/" });
+        dispatch(logout());
+        navigate("/login");
+        toast.success("تم تسجيل الخروج بنجاح");
+      }
+    } catch (error) {
+      console.error("Error logging out:", error.message);
+      toast.error(errorHandle(error, "حدث خطأ في تسجيل الخروج"));
+    }
   };
 
   return (
@@ -139,10 +164,12 @@ export default function Navbar() {
                   <NavLink
                     className="nav_link"
                     to="/logout"
-                    onClick={() => setShowUserModal(false)}
+                    onClick={() => {
+                      setShowUserModal(false), handleLogout();
+                    }}
                   >
                     <div className="icon">
-                      <img src={logout} alt="logout" />
+                      <img src={logoutIcon} alt="logout" />
                     </div>
                     <h6>تسجيل الخروج</h6>
                   </NavLink>

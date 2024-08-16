@@ -4,12 +4,15 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/authedUser";
+import { useCookies } from "react-cookie";
 import InputField from "../ui/InputField";
 import logo from "../assets/images/logo.svg";
+import { errorHandle } from "../utils/helpers";
 
 export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [, setCookie] = useCookies(["token", "id"]);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
@@ -20,15 +23,30 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axiosInstance.post("/auth/login", formData, {
-        withCredentials: true
-      });
-      toast.success("تم تسجيل الدخول بنجاح");
-      dispatch(setUser(res.data.data));
-      navigate("/");
+      const res = await axiosInstance.post("/auth/login", formData);
+      if (res.data.data) {
+        toast.success("تم تسجيل الدخول بنجاح");
+        dispatch(setUser(res.data.data));
+        navigate("/");
+        setCookie("token", res.data.data.token, {
+          path: "/",
+          secure: true,
+          sameSite: "Strict"
+        });
+        setCookie("id", res.data.data.id, {
+          path: "/",
+          secure: true,
+          sameSite: "Strict"
+        });
+        axiosInstance.defaults.headers.common[
+          "Authorization"
+        ] = `bearer ${res.data.data.token}`;
+      } else {
+        toast.error("اسم المستخدم او كلمة المرور غير صحيحة");
+      }
     } catch (error) {
       console.log(error);
-      toast.error("اسم المستخدم او كلمة المرور غير صحيحة");
+      toast.error(errorHandle(error, "اسم المستخدم او كلمة المرور غير صحيحة"));
     } finally {
       setLoading(false);
     }

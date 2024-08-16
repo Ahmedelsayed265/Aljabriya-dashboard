@@ -6,7 +6,7 @@ export default function useGetUser(enabled) {
     queryKey: ["profile"],
     queryFn: async () => {
       try {
-        const res = await axiosInstance.get("/getUser");
+        const res = await axiosInstance.post("/getUser");
         if (res.status === 200) {
           return res.data.data;
         }
