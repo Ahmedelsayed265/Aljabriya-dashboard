@@ -1,86 +1,8 @@
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
 import { Link } from "react-router-dom";
-import Pagination from "../ui/Pagination";
+import LotteriesTable from "../components/LotteriesTable";
 import PageHeader from "../components/PageHeader";
 
 export default function Lotteries() {
-  const lotteries = [
-    {
-      index: "1",
-      name: "قرعة النوادي الرياضية",
-      id: "١٢٣٥٦٧",
-      description: "هذا النص يمكن...",
-      category: "أوكسجين",
-      no_of_clients: "300",
-      status: "مجدولة",
-      last_visit: "١٥ / ١ / ٢٠٢٤"
-    },
-    {
-      index: "2",
-      name: "قرعة النوادي الرياضية",
-      id: "١٢٣٥٦٧",
-      description: "هذا النص يمكن...",
-      category: "أوكسجين",
-      no_of_clients: "300",
-      status: "انتهت",
-      last_visit: "١٥ / ١ / ٢٠٢٤"
-    },
-    {
-      index: "3",
-      name: "قرعة النوادي الرياضية",
-      id: "١٢٣٥٦٧",
-      description: "هذا النص يمكن...",
-      category: "أوكسجين",
-      no_of_clients: "300",
-      status: "بدأت",
-      last_visit: "١٥ / ١ / ٢٠٢٤"
-    },
-    {
-      index: "4",
-      name: "قرعة النوادي الرياضية",
-      id: "١٢٣٥٦٧",
-      description: "هذا النص يمكن...",
-      category: "أوكسجين",
-      no_of_clients: "300",
-      status: "انتهت",
-      last_visit: "١٥ / ١ / ٢٠٢٤"
-    },
-    {
-      index: "5",
-      name: "قرعة النوادي الرياضية",
-      id: "١٢٣٥٦٧",
-      description: "هذا النص يمكن...",
-      category: "أوكسجين",
-      no_of_clients: "300",
-      status: "مجدولة",
-      last_visit: "١٥ / ١ / ٢٠٢٤"
-    },
-    {
-      index: "6",
-      name: "قرعة النوادي الرياضية",
-      id: "١٢٣٥٦٧",
-      description: "هذا النص يمكن...",
-      category: "أوكسجين",
-      no_of_clients: "300",
-      status: "انتهت",
-      last_visit: "١٥ / ١ / ٢٠٢٤"
-    }
-  ];
-
-  const statusTemplate = (rowData) => {
-    const status = rowData.status;
-    let className = "";
-    if (status === "مجدولة") {
-      className = "status-Scheduled";
-    } else if (status === "بدأت") {
-      className = "status-Started";
-    } else {
-      className = "status-Ended";
-    }
-    return <span className={className}>{rowData.status}</span>;
-  };
-
   return (
     <section className="lotteries">
       <div className="container">
@@ -101,7 +23,6 @@ export default function Lotteries() {
                   </Link>
                 </form>
               </div>
-
               <div className="lotteries_type">
                 <label htmlFor="active_lotteries">
                   <input
@@ -125,26 +46,7 @@ export default function Lotteries() {
                   </div>
                 </label>
               </div>
-
-              <div className="table-container">
-                <DataTable value={lotteries}>
-                  <Column field="index" header="م" />
-                  <Column field="name" header="الاسم" />
-                  <Column field="id" header="ID" />
-                  <Column field="description" header="الوصف" />
-                  <Column field="category" header="التصنيف" />
-                  <Column field="no_of_clients" header="عدد المسجلين" />
-                  <Column
-                    field="status"
-                    body={statusTemplate}
-                    header="الحالة"
-                  />
-                  <Column field="last_visit" header="اخر موعد للتسجيل" />
-                  <Column field="" header="" />
-                </DataTable>
-              </div>
-
-              <Pagination count={30} />
+              <LotteriesTable />
             </div>
           </div>
         </div>

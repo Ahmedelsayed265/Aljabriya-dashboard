@@ -177,6 +177,83 @@ input[type=number]::-webkit-inner-spin-button {
   border-color: #0045ba;
 }
 
+.tableLoader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.tableLoader .loader--style8 {
+  width: 80px;
+  height: 80px;
+}
+.tableLoader svg path,
+.tableLoader svg rect {
+  fill: #0045ba;
+}
+
+.actions .dropdown-toggle {
+  height: 36px;
+  width: 36px;
+  border-radius: 100px;
+  border: 0;
+  background-color: #fff;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.actions .dropdown-toggle svg {
+  height: 20px;
+}
+.actions .dropdown-toggle img {
+  width: 16px;
+  height: 16px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.actions .dropdown-toggle::after {
+  display: none;
+}
+.actions .dropdown-menu {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  width: 120px;
+}
+.actions .dropdown-menu .dropdown-item {
+  padding: 0 12px;
+}
+.actions .dropdown-menu .dropdown-item button,
+.actions .dropdown-menu .dropdown-item a {
+  padding: 4px 0;
+  background: none !important;
+  text-align: right;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: #121212;
+  gap: 8px;
+  font-size: 14px;
+}
+.actions .dropdown-menu .dropdown-item button img,
+.actions .dropdown-menu .dropdown-item a img {
+  height: 16px;
+}
+
+.no-data {
+  height: 240px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 600;
+  color: #eeeeee;
+}
+
 body {
   background: #f2f4f7;
 }

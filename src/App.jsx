@@ -27,6 +27,10 @@ function App() {
                     path="/lotteries/add-lottery"
                     element={<AddLottery />}
                   />
+                  <Route
+                    path="/lotteries/edit-lottery/:id"
+                    element={<AddLottery />}
+                  />
                   <Route path="/account-settings" element={<Settings />} />
                   <Route path="/slider-settings" element={<SliderSettings />} />
                   <Route path="/investors" element={<Investors />} />

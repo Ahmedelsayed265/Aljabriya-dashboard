@@ -201,3 +201,76 @@ $transation: 0.3s ease-in-out;
   background-color: $second;
   border-color: $second;
 }
+
+.tableLoader {
+  @include centerFlex();
+  flex-direction: column;
+  .loader--style8 {
+    width: 80px;
+    height: 80px;
+  }
+  svg path,
+  svg rect {
+    fill: $second;
+  }
+}
+
+.actions {
+  .dropdown-toggle {
+    height: 36px;
+    width: 36px;
+    border-radius: 100px;
+    border: 0;
+    background-color: #fff;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      height: 20px;
+    }
+    img {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+    }
+    &::after {
+      display: none;
+    }
+  }
+  .dropdown-menu {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    width: 120px;
+    .dropdown-item {
+      padding: 0 12px;
+      button,
+      a {
+        padding: 4px 0;
+        background: none !important;
+        text-align: right;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        color: $main;
+        gap: 8px;
+        font-size: 14px;
+        img {
+          height: 16px;
+        }
+      }
+    }
+  }
+}
+
+.no-data {
+  height: 240px;
+  width: 100%;
+  @include centerFlex();
+  font-size: 32px;
+  font-weight: 600;
+  color: $lightGray;
+}

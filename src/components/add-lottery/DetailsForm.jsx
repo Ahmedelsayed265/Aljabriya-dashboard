@@ -119,7 +119,7 @@ export default function DetailsForm({
               ) : (
                 <img
                   src={
-                    formData.image.type.startsWith("image/")
+                    formData?.image?.type?.startsWith("image/")
                       ? URL.createObjectURL(formData.image)
                       : formData.image
                   }

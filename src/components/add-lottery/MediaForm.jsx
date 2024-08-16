@@ -5,8 +5,15 @@ export default function MediaForm({ formData, setFormData, setForm }) {
   const imageTemplate = (rowData) => {
     return (
       <div className="row_img">
-        <img src={URL.createObjectURL(rowData)} alt={``} />
-        <h6>{rowData.name}</h6>
+        <img
+          src={
+            rowData.type?.startsWith("image/")
+              ? URL.createObjectURL(rowData)
+              : rowData
+          }
+          alt={rowData.name || rowData}
+        />
+        <h6>{rowData.name || ""}</h6>
       </div>
     );
   };
@@ -59,7 +66,7 @@ export default function MediaForm({ formData, setFormData, setForm }) {
             </div>
           </label>
         </div>
-        {formData.lottery_images.length === 0 ? (
+        {formData?.lottery_images?.length === 0 ? (
           <div className="col-12 p-2">
             <div className="empty_data">
               <img src="/assets/images/noData.svg" alt="no-data" />
