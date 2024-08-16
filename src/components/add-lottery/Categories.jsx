@@ -47,10 +47,10 @@ export default function Categories({
           <InputField
             placeholder="أدخل اسم التصنيف"
             id={`category-name-${index}`}
-            name="name"
+            name="title"
             type="text"
             required
-            value={item.name}
+            value={item.title}
             onChange={(e) => handleChange(e, index)}
           />
           <InputField
@@ -64,7 +64,7 @@ export default function Categories({
           />
           {index === 0 ? (
             <button onClick={handleAddRow} type="button">
-              <img src="/public/assets/images/plus.svg" alt="add icon" />
+              <img src="/assets/images/plus.svg" alt="add icon" />
             </button>
           ) : (
             <button
@@ -72,7 +72,7 @@ export default function Categories({
               className="delete"
               type="button"
             >
-              <img src="/public/assets/images/delete.svg" alt="delete icon" />
+              <img src="/assets/images/delete.svg" alt="delete icon" />
             </button>
           )}
         </div>

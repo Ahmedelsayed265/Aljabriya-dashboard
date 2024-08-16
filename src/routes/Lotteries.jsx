@@ -92,11 +92,11 @@ export default function Lotteries() {
                 <h1>جميع القرعات</h1>
                 <form className="search_form">
                   <div className="input_field">
-                    <img src="/public/assets/images/search.svg" alt="searchIcon" />
+                    <img src="/assets/images/search.svg" alt="searchIcon" />
                     <input type="text" placeholder="ابحث عن قرعة" />
                   </div>
                   <Link to="/lotteries/add-lottery">
-                    <img src="/public/assets/images/plus.svg" alt="filterIcon" />
+                    <img src="/assets/images/plus.svg" alt="filterIcon" />
                     إضافة قرعة
                   </Link>
                 </form>

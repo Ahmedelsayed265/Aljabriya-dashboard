@@ -28,7 +28,7 @@ export default function MediaForm({ formData, setFormData, setForm }) {
           }))
         }
       >
-        <img src="/public/assets/images/delete.svg" alt="delete" />
+        <img src="/assets/images/delete.svg" alt="delete" />
       </div>
     );
   };
@@ -52,7 +52,7 @@ export default function MediaForm({ formData, setFormData, setForm }) {
             />
             <div className="content">
               <div className="icon">
-                <img src="/public/assets/images/upload-gray.svg" alt="upload" />
+                <img src="/assets/images/upload-gray.svg" alt="upload" />
               </div>
               <h6>اضغط لإرفاق الملفات</h6>
               <p>SVG, PNG, JPG or GIF (max. 800x400px)</p>
@@ -62,7 +62,7 @@ export default function MediaForm({ formData, setFormData, setForm }) {
         {formData.lottery_images.length === 0 ? (
           <div className="col-12 p-2">
             <div className="empty_data">
-              <img src="/public/assets/images/noData.svg" alt="no-data" />
+              <img src="/assets/images/noData.svg" alt="no-data" />
               <h5>لم تقم باضافة صور</h5>
             </div>
           </div>

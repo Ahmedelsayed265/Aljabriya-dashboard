@@ -14,7 +14,7 @@ const stepsAr = {
 
 export default function AddLottery() {
   const categoriesInitial = {
-    name: "",
+    title: "",
     count: ""
   };
   const [form, setForm] = useState("details");

@@ -114,7 +114,7 @@ export default function DetailsForm({
             <div className="img">
               {formData.image === "" ? (
                 <span className="icon">
-                  <img src="/public/assets/images/img.svg" alt="Main" />
+                  <img src="/assets/images/img.svg" alt="Main" />
                 </span>
               ) : (
                 <img
@@ -139,7 +139,7 @@ export default function DetailsForm({
                 }
               />
               <div className="content">
-                <img src="/public/assets/images/upload.svg" alt="upload" />
+                <img src="/assets/images/upload.svg" alt="upload" />
                 <p>رفع صورة</p>
               </div>
             </label>

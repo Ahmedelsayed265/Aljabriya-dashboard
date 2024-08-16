@@ -70,7 +70,7 @@ export default function Navbar() {
       <div className="container">
         <div className="logo">
           <Link to="/">
-            <img src="/public/assets/images/logo.svg" alt="logo" />
+            <img src="/assets/images/logo.svg" alt="logo" />
           </Link>
         </div>
         <ul className="nav_menu">
@@ -98,7 +98,7 @@ export default function Navbar() {
               role="button"
             >
               الاعدادات{" "}
-              <img src="/public/assets/images/arrowDown.svg" alt="arrow" />
+              <img src="/assets/images/arrowDown.svg" alt="arrow" />
             </span>
             <div
               ref={settingMenuRef}
@@ -113,7 +113,7 @@ export default function Navbar() {
                     onClick={() => setShowSettingsModal(false)}
                   >
                     <div className="icon">
-                      <img src="/public/assets/images/dots.svg" alt="dots" />
+                      <img src="/assets/images/dots.svg" alt="dots" />
                     </div>
                     <h6>السلايدر</h6>
                   </NavLink>
@@ -126,7 +126,7 @@ export default function Navbar() {
                   >
                     <div className="icon">
                       <img
-                        src="/public/assets/images/settings.svg"
+                        src="/assets/images/settings.svg"
                         alt="settings"
                       />
                     </div>
@@ -146,11 +146,11 @@ export default function Navbar() {
             role="button"
           >
             <div className="user">
-              <img src="/public/assets/images/user.svg" alt="user" />
+              <img src="/assets/images/user.svg" alt="user" />
               <span className="status"></span>
             </div>
             <span className="user_name">أحمد المكرمي</span>
-            <img src="/public/assets/images/arrowDown.svg" alt="arrow" />
+            <img src="/assets/images/arrowDown.svg" alt="arrow" />
             <div
               ref={userMenuRef}
               id="userMenu"
@@ -166,7 +166,7 @@ export default function Navbar() {
                   >
                     <div className="icon">
                       <img
-                        src="/public/assets/images/logout.svg"
+                        src="/assets/images/logout.svg"
                         alt="logout"
                       />
                     </div>

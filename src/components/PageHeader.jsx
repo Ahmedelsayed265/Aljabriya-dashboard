@@ -7,7 +7,7 @@ function PageHeader({ path = [], base = "الرئيسية" }) {
       <div className="page_header">
         <div className="home">
           <div className="icon">
-            <img src="/public/assets/images/home-line.svg" alt="homeIcon" />
+            <img src="/assets/images/home-line.svg" alt="homeIcon" />
           </div>
           {path.length === 0 ? (
             <h6 className="active" to="/">
@@ -20,7 +20,7 @@ function PageHeader({ path = [], base = "الرئيسية" }) {
         {path.map((item, index) => {
           return (
             <Fragment key={index}>
-              <img src="/public/assets/images/arrow-left.svg" alt="arrow" />
+              <img src="/assets/images/arrow-left.svg" alt="arrow" />
               {index === path.length - 1 ? (
                 <h6 className="active" to={item.path}>
                   {item.name}

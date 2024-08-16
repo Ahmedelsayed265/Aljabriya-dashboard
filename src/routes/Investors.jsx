@@ -72,14 +72,14 @@ export default function Investors() {
   const editTemplate = () => {
     return (
       <button>
-        <img src="/public/assets/images/edit.svg" alt="edit" />
+        <img src="/assets/images/edit.svg" alt="edit" />
       </button>
     );
   };
   const deleteTemplate = () => {
     return (
       <button>
-        <img src="/public/assets/images/delete.svg" alt="delete" />
+        <img src="/assets/images/delete.svg" alt="delete" />
       </button>
     );
   };
@@ -97,7 +97,7 @@ export default function Investors() {
                 <form className="search_form">
                   <div className="input_field">
                     <img
-                      src="/public/assets/images/search.svg"
+                      src="/assets/images/search.svg"
                       alt="searchIcon"
                     />
                     <input type="text" placeholder="البحث" />
@@ -105,7 +105,7 @@ export default function Investors() {
                   {investors.length > 0 && (
                     <button>
                       <img
-                        src="/public/assets/images/download.svg"
+                        src="/assets/images/download.svg"
                         alt="filterIcon"
                       />
                       استيراد البيانات
@@ -132,11 +132,11 @@ export default function Investors() {
                 </>
               ) : (
                 <div className="empty_data">
-                  <img src="/public/assets/images/empty.svg" alt="no-data" />
+                  <img src="/assets/images/empty.svg" alt="no-data" />
                   <p>قم الان باستيراد بيانات المساهمين من ملف الاكسل</p>
                   <button>
                     <img
-                      src="/public/assets/images/download.svg"
+                      src="/assets/images/download.svg"
                       alt="filterIcon"
                     />
                     استيراد البيانات

@@ -55,7 +55,7 @@ export default function Login() {
     <section className="login">
       <div className="login_form">
         <div className="logo">
-          <img src="/public/assets/images/logo.svg" alt="logo" />
+          <img src="/assets/images/logo.svg" alt="logo" />
         </div>
         <h1>مرحباً بعودتك 👋</h1>
         <form className="form_ui" onSubmit={handleSubmit}>
