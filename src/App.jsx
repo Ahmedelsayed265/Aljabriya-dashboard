@@ -8,6 +8,7 @@ import Login from "./routes/Login";
 import Settings from "./routes/Settings";
 import SliderSettings from "./routes/SliderSettings";
 import ProtectionProvider from "./providers/ProtectionProvider";
+import ViewLottery from "./routes/ViewLottery";
 
 function App() {
   return (
@@ -30,6 +31,10 @@ function App() {
                   <Route
                     path="/lotteries/edit-lottery/:id"
                     element={<AddLottery />}
+                  />
+                  <Route
+                    path="/lotteries/choose-winner/:id"
+                    element={<ViewLottery />}
                   />
                   <Route path="/account-settings" element={<Settings />} />
                   <Route path="/slider-settings" element={<SliderSettings />} />

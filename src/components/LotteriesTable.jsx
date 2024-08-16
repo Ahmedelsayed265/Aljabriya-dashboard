@@ -1,13 +1,17 @@
+import { useState } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import Pagination from "../ui/Pagination";
-import DataLoader from "./../ui/DataLoader";
-import useGetLotteries from "../hooks/useGetLotteries";
-import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { Dropdown } from "react-bootstrap";
+import Pagination from "../ui/Pagination";
+import DataLoader from "../ui/DataLoader";
+import useGetLotteries from "../hooks/useGetLotteries";
+import ConfirmDeleteModal from "../ui/ConfirmDeleteModal";
 
 export default function LotteriesTable() {
   const { data: lotteries, isLoading } = useGetLotteries(true);
+  const [row, setRow] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   function truncate(inputString) {
     let truncateStringResult;
@@ -79,7 +83,12 @@ export default function LotteriesTable() {
               </Link>
             </Dropdown.Item>
             <Dropdown.Item>
-              <button>
+              <button
+                onClick={() => {
+                  setRow(rowData);
+                  setShowDeleteModal(true);
+                }}
+              >
                 <img src="/assets/images/delete.svg" alt="delete" />
                 حذف القرعة
               </button>
@@ -117,6 +126,13 @@ export default function LotteriesTable() {
           {lotteries?.count > 10 && <Pagination count={lotteries?.count} />}
         </>
       )}
+      <ConfirmDeleteModal
+        showDeleteModal={showDeleteModal}
+        setShowDeleteModal={setShowDeleteModal}
+        deletionTarget={row?.title}
+        onConfirm={() => {}}
+        loading={false}
+      />
     </>
   );
 }

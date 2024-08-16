@@ -4,10 +4,12 @@ import { toast } from "react-toastify";
 import { errorHandle } from "../../utils/helpers";
 import { axiosInstance } from "../../utils/axiosInstance";
 import CheckField from "../../ui/CheckField";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function RulesForm({ formData, setFormData, setForm }) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +23,7 @@ export default function RulesForm({ formData, setFormData, setForm }) {
       if (res.data.data) {
         toast.success("تم تسجيل القرعة بنجاح");
         navigate("/lotteries");
+        queryClient.invalidateQueries(["lotteries"]);
       } else {
         toast.error("حدث خطأ ما");
       }

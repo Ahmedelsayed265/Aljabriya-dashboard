@@ -685,14 +685,25 @@ body {
   width: 100%;
   display: flex;
   align-items: center;
+  position: relative;
+  justify-content: space-between;
+}
+.main .inner_card .wizard_tabs::after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  background: #eaecf0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
 }
 .main .inner_card .wizard_tabs .tab {
-  flex: 1;
-  width: 100%;
   display: flex;
+  background: #fff;
+  z-index: 1;
   align-items: center;
   gap: 12px;
-  border-bottom: 3px solid #eaecf0;
   padding: 16px;
   transition: 0.3s ease-in-out;
   cursor: pointer;
@@ -725,9 +736,6 @@ body {
   margin: 0;
   transition: 0.3s ease-in-out;
 }
-.main .inner_card .wizard_tabs .tab.active {
-  border-bottom: 3px solid #0045ba;
-}
 .main .inner_card .wizard_tabs .tab.active .circle_icon {
   border-color: #0045ba;
 }
@@ -736,6 +744,18 @@ body {
 }
 .main .inner_card .wizard_tabs .tab.active h6 {
   color: #0045ba;
+}
+.main .inner_card .lottery_info {
+  padding: 0 16px;
+}
+.main .inner_card .lottery_info ul {
+  display: flex;
+}
+.main .inner_card .lottery_info ul li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 50%;
 }
 .main .row_img {
   display: flex;
@@ -1189,4 +1209,48 @@ body {
 .empty_data button img,
 .empty_data a img {
   height: 16px;
+}
+
+.confirmation_modal p {
+  margin-top: 16px;
+  margin-bottom: 4px;
+  color: #121212;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+}
+.confirmation_modal p span {
+  line-height: inherit;
+  color: #ff3a29;
+  font-weight: 600;
+}
+.confirmation_modal .cancel {
+  border: none;
+  background: none;
+  outline: none;
+  height: 44px;
+  width: 100%;
+  border: 1px solid #121212;
+  border-radius: 8px;
+  color: #121212;
+}
+.confirmation_modal .cancel:hover {
+  background: none;
+}
+.confirmation_modal .confirm {
+  background: #121212;
+  height: 44px;
+  width: 100%;
+  color: #fff;
+  border-radius: 8px;
+}
+.confirmation_modal .confirm:hover {
+  background: #121212;
+}
+.confirmation_modal .confirm.red {
+  background: #ff3a29;
+}
+.confirmation_modal .confirm.red:hover {
+  background: #ff3a29;
 }/*# sourceMappingURL=main.css.map */

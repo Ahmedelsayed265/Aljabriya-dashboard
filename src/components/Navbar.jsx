@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
 import { axiosInstance } from "./../utils/axiosInstance";
 import { toast } from "react-toastify";
@@ -9,6 +9,7 @@ import { logout } from "../redux/authedUser";
 
 export default function Navbar() {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.authedUser.user);
   const [, , removeCookie] = useCookies(["token", "id"]);
   const navigate = useNavigate();
   const settingMenuRef = useRef(null);
@@ -149,7 +150,7 @@ export default function Navbar() {
               <img src="/assets/images/user.svg" alt="user" />
               <span className="status"></span>
             </div>
-            <span className="user_name">أحمد المكرمي</span>
+            <span className="user_name">{user?.name}</span>
             <img src="/assets/images/arrowDown.svg" alt="arrow" />
             <div
               ref={userMenuRef}
