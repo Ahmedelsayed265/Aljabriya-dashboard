@@ -1,24 +1,34 @@
 import { useState } from "react";
 import { axiosInstance } from "../utils/axiosInstance";
 import { toast } from "react-toastify";
-import logo from "../assets/images/logo.svg";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/authedUser";
 import InputField from "../ui/InputField";
+import logo from "../assets/images/logo.svg";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
-    password: "",
+    password: ""
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axiosInstance.post("/auth/login", formData);
-      console.log(res.data);
+      const res = await axiosInstance.post("/auth/login", formData, {
+        withCredentials: true
+      });
+      toast.success("تم تسجيل الدخول بنجاح");
+      dispatch(setUser(res.data.data));
+      navigate("/");
     } catch (error) {
-      toast.error(error.response.data.message);
+      console.log(error);
+      toast.error("اسم المستخدم او كلمة المرور غير صحيحة");
     } finally {
       setLoading(false);
     }
@@ -63,7 +73,7 @@ export default function Login() {
               type="submit"
               className="submit"
             >
-              تسجيل الدخول
+              تسجيل الدخول{" "}
               <i className={loading ? "fa-solid fa-spinner fa-spin" : ""} />
             </button>
           </div>

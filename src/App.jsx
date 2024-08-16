@@ -7,6 +7,7 @@ import AddLottery from "./routes/AddLottery";
 import Login from "./routes/Login";
 import Settings from "./routes/Settings";
 import SliderSettings from "./routes/SliderSettings";
+import ProtectionProvider from "./providers/ProtectionProvider";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Route
           path="*"
           element={
-            <>
+            <ProtectionProvider>
               <Navbar />
               <main className="main">
                 <Routes>
@@ -31,7 +32,7 @@ function App() {
                   <Route path="/investors" element={<Investors />} />
                 </Routes>
               </main>
-            </>
+            </ProtectionProvider>
           }
         />
       </Routes>

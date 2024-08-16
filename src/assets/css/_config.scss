@@ -176,3 +176,23 @@ $transation: 0.3s ease-in-out;
 .form-check .form-check-input {
   margin-left: 0 !important;
 }
+
+.Toastify__toast-body {
+  direction: ltr !important;
+}
+.Toastify__toast-body > div:last-child {
+  line-height: 24px;
+  flex: unset;
+  font-size: 14px;
+  gap: 8px;
+}
+@media only screen and (max-width: 480px) {
+  .Toastify__toast-container {
+    right: 0;
+    left: initial;
+  }
+}
+.Toastify__toast-icon {
+  margin-inline-start: 8px;
+  margin-inline-end: 0;
+}
