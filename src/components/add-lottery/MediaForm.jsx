@@ -1,17 +1,38 @@
-import upload from "../../assets/images/upload-gray.svg";
-import noData from "../../assets/images/noData.svg";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import { handleChange } from "../../utils/helpers";
 
 export default function MediaForm({ formData, setFormData, setForm }) {
   const imageTemplate = (rowData) => {
     return (
       <div className="row_img">
         <img src={URL.createObjectURL(rowData)} alt={``} />
+        <h6>{rowData.name}</h6>
       </div>
-    )
-  }
+    );
+  };
+
+  const indexTemplate = (rowData) => {
+    return formData.lottery_images.indexOf(rowData) + 1;
+  };
+
+  const deleteTeplate = (rowData) => {
+    return (
+      <div
+        className="delete_icon"
+        onClick={() =>
+          setFormData((prev) => ({
+            ...prev,
+            lottery_images: prev.lottery_images.filter(
+              (image) => image !== rowData
+            )
+          }))
+        }
+      >
+        <img src="/public/assets/images/delete.svg" alt="delete" />
+      </div>
+    );
+  };
+
   return (
     <form className="form_ui">
       <div className="row m-0">
@@ -22,11 +43,16 @@ export default function MediaForm({ formData, setFormData, setForm }) {
               name="lottery_images"
               id="lottery_images"
               multiple
-              onChange={(e) => handleChange(e, setFormData)}
+              onChange={(e) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  [e.target.name]: [...prev[e.target.name], ...e.target.files]
+                }))
+              }
             />
             <div className="content">
               <div className="icon">
-                <img src={upload} alt="upload" />
+                <img src="/public/assets/images/upload-gray.svg" alt="upload" />
               </div>
               <h6>اضغط لإرفاق الملفات</h6>
               <p>SVG, PNG, JPG or GIF (max. 800x400px)</p>
@@ -36,17 +62,17 @@ export default function MediaForm({ formData, setFormData, setForm }) {
         {formData.lottery_images.length === 0 ? (
           <div className="col-12 p-2">
             <div className="empty_data">
-              <img src={noData} alt="no-data" />
+              <img src="/public/assets/images/noData.svg" alt="no-data" />
               <h5>لم تقم باضافة صور</h5>
             </div>
           </div>
         ) : (
           <div className="col-12 p-2">
             <div className="table-container">
-              <DataTable value="">
-                <Column field="index" header="م" />
+              <DataTable value={formData.lottery_images}>
+                <Column field="index" body={indexTemplate} header="م" />
                 <Column field="image" body={imageTemplate} header="الصورة" />
-                <Column field="" header="" />
+                <Column field="" body={deleteTeplate} header="" />
               </DataTable>
             </div>
           </div>

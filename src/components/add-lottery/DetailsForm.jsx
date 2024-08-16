@@ -2,17 +2,20 @@ import { handleChange } from "../../utils/helpers";
 import FromToInput from "../../ui/FromToInput";
 import InputField from "../../ui/InputField";
 import Categories from "./Categories";
-import imgPlaceholder from "../../assets/images/img.svg";
-import upload from "../../assets/images/upload.svg";
 
 export default function DetailsForm({
   formData,
   setForm,
   setFormData,
-  categoriesInitial,
+  categoriesInitial
 }) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setForm("media");
+  };
+
   return (
-    <form className="form_ui">
+    <form className="form_ui" onSubmit={handleSubmit}>
       <div className="row m-0">
         <div className="col-lg-6 col-12 p-2">
           <InputField
@@ -33,6 +36,7 @@ export default function DetailsForm({
             id="live_link"
             name="live_link"
             type="url"
+            required
             value={formData.live_link}
             onChange={(e) => handleChange(e, setFormData)}
           />
@@ -46,6 +50,7 @@ export default function DetailsForm({
                 name="from_age"
                 placeholder="١٨"
                 type="number"
+                required
                 label="من"
                 value={formData.from_age}
                 onChange={(e) => handleChange(e, setFormData)}
@@ -56,6 +61,7 @@ export default function DetailsForm({
                 type="number"
                 placeholder="٦٠"
                 label="الي"
+                required
                 value={formData.to_age}
                 onChange={(e) => handleChange(e, setFormData)}
               />
@@ -65,10 +71,11 @@ export default function DetailsForm({
         <div className="col-lg-6 col-12 p-2">
           <InputField
             label="اخر موعد للتسجيل"
-            id="last_register_date"
-            name="last_register_date"
+            id="to_date"
+            name="to_date"
             type="date"
-            value={formData.last_register_date}
+            required
+            value={formData.to_date}
             onChange={(e) => handleChange(e, setFormData)}
           />
         </div>
@@ -107,7 +114,7 @@ export default function DetailsForm({
             <div className="img">
               {formData.image === "" ? (
                 <span className="icon">
-                  <img src={imgPlaceholder} alt="Main" />
+                  <img src="/public/assets/images/img.svg" alt="Main" />
                 </span>
               ) : (
                 <img
@@ -132,14 +139,14 @@ export default function DetailsForm({
                 }
               />
               <div className="content">
-                <img src={upload} alt="upload" />
+                <img src="/public/assets/images/upload.svg" alt="upload" />
                 <p>رفع صورة</p>
               </div>
             </label>
           </div>
         </div>
         <div className="col-12 p-2 mt-3 d-flex justify-content-end">
-          <button className="next" onClick={() => setForm("media")}>
+          <button type="submit" className="next">
             التالي
           </button>
         </div>

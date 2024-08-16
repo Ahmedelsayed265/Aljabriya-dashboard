@@ -6,12 +6,6 @@ import { axiosInstance } from "./../utils/axiosInstance";
 import { toast } from "react-toastify";
 import { errorHandle } from "../utils/helpers";
 import { logout } from "../redux/authedUser";
-import logo from "../assets/images/logo.svg";
-import user from "../assets/images/user.svg";
-import arrow from "../assets/images/arrowDown.svg";
-import dots from "../assets/images/dots.svg";
-import settings from "../assets/images/settings.svg";
-import logoutIcon from "../assets/images/logout.svg";
 
 export default function Navbar() {
   const dispatch = useDispatch();
@@ -64,7 +58,6 @@ export default function Navbar() {
         removeCookie("id", { path: "/" });
         dispatch(logout());
         navigate("/login");
-        toast.success("تم تسجيل الخروج بنجاح");
       }
     } catch (error) {
       console.error("Error logging out:", error.message);
@@ -77,7 +70,7 @@ export default function Navbar() {
       <div className="container">
         <div className="logo">
           <Link to="/">
-            <img src={logo} alt="logo" />
+            <img src="/public/assets/images/logo.svg" alt="logo" />
           </Link>
         </div>
         <ul className="nav_menu">
@@ -104,7 +97,8 @@ export default function Navbar() {
               aria-controls="settingsMenu"
               role="button"
             >
-              الاعدادات <img src={arrow} alt="arrow" />
+              الاعدادات{" "}
+              <img src="/public/assets/images/arrowDown.svg" alt="arrow" />
             </span>
             <div
               ref={settingMenuRef}
@@ -119,7 +113,7 @@ export default function Navbar() {
                     onClick={() => setShowSettingsModal(false)}
                   >
                     <div className="icon">
-                      <img src={dots} alt="dots" />
+                      <img src="/public/assets/images/dots.svg" alt="dots" />
                     </div>
                     <h6>السلايدر</h6>
                   </NavLink>
@@ -131,7 +125,10 @@ export default function Navbar() {
                     onClick={() => setShowSettingsModal(false)}
                   >
                     <div className="icon">
-                      <img src={settings} alt="settings" />
+                      <img
+                        src="/public/assets/images/settings.svg"
+                        alt="settings"
+                      />
                     </div>
                     <h6>الإعدادات</h6>
                   </NavLink>
@@ -149,11 +146,11 @@ export default function Navbar() {
             role="button"
           >
             <div className="user">
-              <img src={user} alt="user" />
+              <img src="/public/assets/images/user.svg" alt="user" />
               <span className="status"></span>
             </div>
             <span className="user_name">أحمد المكرمي</span>
-            <img src={arrow} alt="arrow" />
+            <img src="/public/assets/images/arrowDown.svg" alt="arrow" />
             <div
               ref={userMenuRef}
               id="userMenu"
@@ -163,13 +160,15 @@ export default function Navbar() {
                 <li>
                   <NavLink
                     className="nav_link"
-                    to="/logout"
                     onClick={() => {
                       setShowUserModal(false), handleLogout();
                     }}
                   >
                     <div className="icon">
-                      <img src={logoutIcon} alt="logout" />
+                      <img
+                        src="/public/assets/images/logout.svg"
+                        alt="logout"
+                      />
                     </div>
                     <h6>تسجيل الخروج</h6>
                   </NavLink>

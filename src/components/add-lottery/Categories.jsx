@@ -1,6 +1,4 @@
 import InputField from "../../ui/InputField";
-import plus from "../../assets/images/plus.svg";
-import deleteIcon from "../../assets/images/delete.svg";
 
 export default function Categories({
   formData,
@@ -51,6 +49,7 @@ export default function Categories({
             id={`category-name-${index}`}
             name="name"
             type="text"
+            required
             value={item.name}
             onChange={(e) => handleChange(e, index)}
           />
@@ -58,13 +57,14 @@ export default function Categories({
             id={`category-count-${index}`}
             placeholder="العدد"
             type="number"
+            required
             name="count"
             value={item.count}
             onChange={(e) => handleChange(e, index)}
           />
           {index === 0 ? (
             <button onClick={handleAddRow} type="button">
-              <img src={plus} alt="add icon" />
+              <img src="/public/assets/images/plus.svg" alt="add icon" />
             </button>
           ) : (
             <button
@@ -72,7 +72,7 @@ export default function Categories({
               className="delete"
               type="button"
             >
-              <img src={deleteIcon} alt="delete icon" />
+              <img src="/public/assets/images/delete.svg" alt="delete icon" />
             </button>
           )}
         </div>

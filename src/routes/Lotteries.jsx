@@ -1,10 +1,8 @@
 import { DataTable } from "primereact/datatable";
-import PageHeader from "../components/PageHeader";
-import plusIcon from "../assets/images/plus.svg";
-import searchIcon from "../assets/images/search.svg";
 import { Column } from "primereact/column";
 import { Link } from "react-router-dom";
 import Pagination from "../ui/Pagination";
+import PageHeader from "../components/PageHeader";
 
 export default function Lotteries() {
   const lotteries = [
@@ -94,11 +92,11 @@ export default function Lotteries() {
                 <h1>جميع القرعات</h1>
                 <form className="search_form">
                   <div className="input_field">
-                    <img src={searchIcon} alt="searchIcon" />
+                    <img src="/public/assets/images/search.svg" alt="searchIcon" />
                     <input type="text" placeholder="ابحث عن قرعة" />
                   </div>
                   <Link to="/lotteries/add-lottery">
-                    <img src={plusIcon} alt="filterIcon" />
+                    <img src="/public/assets/images/plus.svg" alt="filterIcon" />
                     إضافة قرعة
                   </Link>
                 </form>

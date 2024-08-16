@@ -6,6 +6,7 @@ const CheckField = ({ name, id, onChange, checked }) => {
       <Form.Check
         type="switch"
         id={id}
+        name={id}
         label={name}
         onChange={onChange}
         checked={checked}

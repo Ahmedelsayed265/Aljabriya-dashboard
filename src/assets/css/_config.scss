@@ -196,3 +196,8 @@ $transation: 0.3s ease-in-out;
   margin-inline-start: 8px;
   margin-inline-end: 0;
 }
+
+.form-check-input:checked {
+  background-color: $second;
+  border-color: $second;
+}

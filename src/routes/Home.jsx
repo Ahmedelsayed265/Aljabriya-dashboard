@@ -1,8 +1,6 @@
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
 import PageHeader from "../components/PageHeader";
-import filterIcon from "../assets/images/filter.svg";
-import searchIcon from "../assets/images/search.svg";
 import DaysSliderFilter from "../components/DaysSliderFilter";
 import LotteriesSlider from "../components/LotteriesSlider";
 import Pagination from "../ui/Pagination";
@@ -114,11 +112,11 @@ export default function Home() {
                 <h1>جميع القرعات</h1>
                 <form className="search_form">
                   <div className="input_field">
-                    <img src={searchIcon} alt="searchIcon" />
+                    <img src="/public/assets/images/search.svg" alt="searchIcon" />
                     <input type="text" placeholder="ابحث عن قرعة" />
                   </div>
                   <button>
-                    <img src={filterIcon} alt="filterIcon" />
+                    <img src="/public/assets/images/filter.svg" alt="filterIcon" />
                     تصفية
                   </button>
                 </form>

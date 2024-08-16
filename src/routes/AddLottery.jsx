@@ -3,7 +3,7 @@ import PageHeader from "../components/PageHeader";
 import DetailsForm from "../components/add-lottery/DetailsForm";
 import MediaForm from "../components/add-lottery/MediaForm";
 import RulesForm from "../components/add-lottery/RulesForm";
-import ParticipantsForm from "../components/add-lottery/ParticipantsForm";
+// import ParticipantsForm from "../components/add-lottery/ParticipantsForm";
 
 const stepsAr = {
   details: "إضافة تفاصيل  القرعة",
@@ -27,9 +27,11 @@ export default function AddLottery() {
     to_age: "",
     policy: "",
     image: "",
-    last_register_date: "",
-    lottery_images: [],
-    rules: []
+    to_date: "",
+    age: 0,
+    sex: 0,
+    box_id: 0,
+    lottery_images: []
   });
 
   return (
@@ -45,22 +47,20 @@ export default function AddLottery() {
           <div className="col-12 p-2">
             <div className="inner_card">
               <div className="wizard_tabs">
-                {["details", "media", "rules", "participants"].map(
-                  (fo, index) => {
-                    return (
-                      <div
-                        key={index}
-                        className={`tab ${form === fo ? "active" : ""}`}
-                        onClick={() => setForm(fo)}
-                      >
-                        <div className="circle_icon">
-                          <span />
-                        </div>
-                        <h6>{stepsAr[fo]}</h6>
+                {["details", "media", "rules"].map((fo, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className={`tab ${form === fo ? "active" : ""}`}
+                      onClick={() => setForm(fo)}
+                    >
+                      <div className="circle_icon">
+                        <span />
                       </div>
-                    );
-                  }
-                )}
+                      <h6>{stepsAr[fo]}</h6>
+                    </div>
+                  );
+                })}
               </div>
               {form === "details" && (
                 <DetailsForm
@@ -84,13 +84,13 @@ export default function AddLottery() {
                   setFormData={setFormData}
                 />
               )}
-              {form === "participants" && (
+              {/* {form === "participants" && (
                 <ParticipantsForm
                   formData={formData}
                   setForm={setForm}
                   setFormData={setFormData}
                 />
-              )}
+              )} */}
             </div>
           </div>
         </div>

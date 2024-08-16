@@ -5,9 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/authedUser";
 import { useCookies } from "react-cookie";
-import InputField from "../ui/InputField";
-import logo from "../assets/images/logo.svg";
 import { errorHandle } from "../utils/helpers";
+import InputField from "../ui/InputField";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -56,7 +55,7 @@ export default function Login() {
     <section className="login">
       <div className="login_form">
         <div className="logo">
-          <img src={logo} alt="logo" />
+          <img src="/public/assets/images/logo.svg" alt="logo" />
         </div>
         <h1>مرحباً بعودتك 👋</h1>
         <form className="form_ui" onSubmit={handleSubmit}>

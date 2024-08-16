@@ -1,5 +1,3 @@
-import homeIcon from "../assets/images/home-line.svg";
-import arrow from "../assets/images/arrow-left.svg";
 import { Link } from "react-router-dom";
 import { Fragment } from "react";
 
@@ -9,7 +7,7 @@ function PageHeader({ path = [], base = "الرئيسية" }) {
       <div className="page_header">
         <div className="home">
           <div className="icon">
-            <img src={homeIcon} alt="homeIcon" />
+            <img src="/public/assets/images/home-line.svg" alt="homeIcon" />
           </div>
           {path.length === 0 ? (
             <h6 className="active" to="/">
@@ -22,7 +20,7 @@ function PageHeader({ path = [], base = "الرئيسية" }) {
         {path.map((item, index) => {
           return (
             <Fragment key={index}>
-              <img src={arrow} alt="arrow" />
+              <img src="/public/assets/images/arrow-left.svg" alt="arrow" />
               {index === path.length - 1 ? (
                 <h6 className="active" to={item.path}>
                   {item.name}
