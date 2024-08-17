@@ -6,18 +6,16 @@ import { Dropdown } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { errorHandle } from "../utils/helpers";
 import { axiosInstance } from "../utils/axiosInstance";
-import { useQueryClient } from "@tanstack/react-query";
 import Pagination from "../ui/Pagination";
 import DataLoader from "../ui/DataLoader";
 import useGetLotteries from "../hooks/useGetLotteries";
 import ConfirmDeleteModal from "../ui/ConfirmDeleteModal";
 
 export default function LotteriesTable() {
-  const { data: lotteries, isLoading } = useGetLotteries(true);
+  const { data: lotteries, isLoading, refetch } = useGetLotteries();
   const [row, setRow] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const queryClient = useQueryClient();
 
   function truncate(inputString) {
     let truncateStringResult;
@@ -120,7 +118,7 @@ export default function LotteriesTable() {
       if (res.status === 200) {
         toast.success("تم الحذف بنجاح");
         setShowDeleteModal(false);
-        queryClient.invalidateQueries(["lotteries"]);
+        refetch();
       }
     } catch (error) {
       console.log(error);

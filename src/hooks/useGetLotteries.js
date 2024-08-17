@@ -9,8 +9,8 @@ export default function useGetLotteries() {
         const res = await axiosInstance.get("/lotteries");
         if (res.status === 200) {
           return {
-            data: res.data.data.Data,
-            count: res.data.data.total_count
+            data: res.data.data?.Data,
+            count: res.data.data?.total_count
           };
         }
       } catch (error) {
