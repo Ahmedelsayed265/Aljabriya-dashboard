@@ -5,7 +5,7 @@ export default function LotteryCard({ lottery }) {
     <div className="lottery_card">
       <div className="img">
         <img
-          src={lottery?.image || "/public/assets/images/sportClub.png"}
+          src={lottery?.image || "/assets/images/sportClub.png"}
           alt="slide1"
         />
         <div className="timer">

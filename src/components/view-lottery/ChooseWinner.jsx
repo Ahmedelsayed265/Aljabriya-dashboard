@@ -23,7 +23,7 @@ export default function ChooseWinner({ lottery, formData }) {
       </div>
       <div className="d-flex justify-content-center">
         <video
-          src="/public/assets/images/winners.mp4"
+          src="/assets/images/winners.mp4"
           autoPlay
           loop
           muted
