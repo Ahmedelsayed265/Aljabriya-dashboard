@@ -6,7 +6,7 @@ import { useQueryClient } from "@tanstack/react-query";
 
 export default function StartLottery({
   lottery,
-  setFormDataStep,
+  setFormStep,
   formData,
   setFormData
 }) {
@@ -20,7 +20,7 @@ export default function StartLottery({
       const res = await axiosInstance.post("/getLotteriesWinners", formData);
       if (res?.data?.status === 200) {
         toast.success("تم بدء القرعة بنجاح");
-        setFormDataStep("choose_winner");
+        setFormStep("choose_winner");
         queryClient.invalidateQueries(["lottery-winners", lottery.id]);
       } else toast.error(res.data.message);
     } catch (error) {

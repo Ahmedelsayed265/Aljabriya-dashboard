@@ -3,14 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { errorHandle } from "../../utils/helpers";
 import { axiosInstance } from "../../utils/axiosInstance";
-import { useQueryClient } from "@tanstack/react-query";
 import CheckField from "../../ui/CheckField";
+import useGetLotteries from "../../hooks/useGetLotteries";
 
 export default function RulesForm({ formData, setFormData, setForm }) {
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
+  const { refetch } = useGetLotteries();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,7 +67,7 @@ export default function RulesForm({ formData, setFormData, setForm }) {
       if (res.data.data) {
         toast.success(id ? "تم تحديث القرعة بنجاح" : "تم تسجيل القرعة بنجاح");
         navigate("/lotteries");
-        queryClient.invalidateQueries(["lotteries"]);
+        refetch();
       } else {
         toast.error("حدث خطأ ما");
       }

@@ -263,6 +263,53 @@ input[type=number]::-webkit-inner-spin-button {
   color: #0045ba;
 }
 
+.ReactFlagsSelect-module_selectBtn__19wW7 {
+  border: 1px solid #eaecf0 !important;
+  height: 54px;
+  border-radius: 8px;
+  box-shadow: none;
+  outline: none;
+  color: #aaaaaa;
+}
+
+.ReactFlagsSelect-module_filterBox__3m8EU {
+  padding: 8px;
+}
+.ReactFlagsSelect-module_filterBox__3m8EU input {
+  margin: 0;
+}
+
+.ReactFlagsSelect-module_flagsSelect__2pfa2 {
+  padding-bottom: 0;
+}
+
+.ReactFlagsSelect-module_selectOptions__3LNBJ {
+  font-size: 16px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border: 0;
+  max-height: 208px;
+  border-radius: 8px;
+  scrollbar-width: none;
+}
+.ReactFlagsSelect-module_selectOptions__3LNBJ input {
+  height: 48px !important;
+  border-radius: 8px !important;
+}
+.ReactFlagsSelect-module_selectOptions__3LNBJ::-webkit-scrollbar {
+  display: none !important;
+}
+
+.ReactFlagsSelect-module_filterBox__3m8EU input {
+  border: 1px solid #f2f2f2;
+  width: 100%;
+}
+
+.ReactFlagsSelect-module_label__27pw9,
+.ReactFlagsSelect-module_secondaryLabel__37t1D {
+  padding-left: 0;
+  padding-right: 12px;
+}
+
 body {
   background: #f2f4f7;
 }
@@ -1346,6 +1393,10 @@ body {
   border: 1px solid #eaecf0;
   width: 100%;
   padding: 16px;
+  border-radius: 16px;
+}
+.account_form .img_field h6 {
+  align-self: flex-start;
 }
 .account_form .img_field .img {
   background: #f5f5f5;
