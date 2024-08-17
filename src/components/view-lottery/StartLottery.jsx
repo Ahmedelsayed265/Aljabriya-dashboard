@@ -2,7 +2,7 @@ import { useState } from "react";
 import InputField from "./../../ui/InputField";
 import { axiosInstance } from "../../utils/axiosInstance";
 import { toast } from "react-toastify";
-import { useQueryClient } from "@tanstack/react-query";
+import useGetLotteryWinners from "../../hooks/useGetLotteryWinners";
 
 export default function StartLottery({
   lottery,
@@ -11,7 +11,11 @@ export default function StartLottery({
   setFormData
 }) {
   const [loading, setLoading] = useState(false);
-  const queryClient = useQueryClient();
+  const { refetch } = useGetLotteryWinners(
+    formData.lottery_id,
+    formData.category_id,
+    formData.main
+  );
 
   const handleStartLottery = async (e) => {
     e.preventDefault();
@@ -21,7 +25,7 @@ export default function StartLottery({
       if (res?.data?.status === 200) {
         toast.success("تم بدء القرعة بنجاح");
         setFormStep("choose_winner");
-        queryClient.invalidateQueries(["lottery-winners", lottery.id]);
+        refetch();
       } else toast.error(res.data.message);
     } catch (error) {
       console.error(error);
