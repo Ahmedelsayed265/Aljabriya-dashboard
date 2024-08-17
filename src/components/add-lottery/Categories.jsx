@@ -50,6 +50,7 @@ export default function Categories({
             name="title"
             type="text"
             required
+            disabled={item?.type !== "new"}
             value={item.title}
             onChange={(e) => handleChange(e, index)}
           />
@@ -71,6 +72,7 @@ export default function Categories({
               onClick={() => handleDeleteRow(index)}
               className="delete"
               type="button"
+              disabled={item?.type !== "new"}
             >
               <img src="/assets/images/delete.svg" alt="delete icon" />
             </button>

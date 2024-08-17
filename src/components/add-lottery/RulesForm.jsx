@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { errorHandle } from "../../utils/helpers";
 import { axiosInstance } from "../../utils/axiosInstance";
-import CheckField from "../../ui/CheckField";
 import { useQueryClient } from "@tanstack/react-query";
+import CheckField from "../../ui/CheckField";
 
 export default function RulesForm({ formData, setFormData, setForm }) {
+  const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -14,22 +15,65 @@ export default function RulesForm({ formData, setFormData, setForm }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    const endPoint = id ? `/editLottery` : "/addLottery";
+    const payload = {
+      title: formData.title,
+      description: formData.description,
+      live_link: formData.live_link,
+      from_age: formData.from_age,
+      to_age: formData.to_age,
+      policy: formData.policy,
+      to_date: formData.to_date,
+      age: formData.age,
+      sex: formData.sex,
+      box_id: formData.box_id
+    };
+
+    if (id) {
+      payload.lottery_id = id;
+    }
+
+    if (typeof formData.image === "object") {
+      payload.image = formData.image;
+    }
+
+    const images = formData.lottery_images.filter(
+      (image) => typeof image === "object"
+    );
+
+    if (images.length > 0) {
+      payload.images = images;
+    }
+
+    const newCategories = formData.categories.map((c) => {
+      const cat = {
+        title: c.title,
+        count: c.count
+      };
+      if (c.id) {
+        cat.id = c.id;
+      }
+      return cat;
+    });
+
+    payload.categories = newCategories;
+
     try {
-      const res = await axiosInstance.post("/addLottery", formData, {
+      const res = await axiosInstance.post(endPoint, payload, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
       });
       if (res.data.data) {
-        toast.success("تم تسجيل القرعة بنجاح");
+        toast.success(id ? "تم تحديث القرعة بنجاح" : "تم تسجيل القرعة بنجاح");
         navigate("/lotteries");
         queryClient.invalidateQueries(["lotteries"]);
       } else {
-        toast.error("حدث خطأ ما");
+        toast.error("حدث خطأ ما");
       }
     } catch (error) {
       console.log(error);
-      toast.error(errorHandle(error, "حدث خطأ ما"));
+      toast.error(errorHandle(error, "حدث خطأ ما"));
     } finally {
       setLoading(false);
     }
@@ -42,7 +86,7 @@ export default function RulesForm({ formData, setFormData, setForm }) {
           <CheckField
             name="العمر (اجباري)"
             id="age"
-            checked={formData.age === 1 ? true : false}
+            checked={formData.age === 1}
             onChange={(e) =>
               setFormData((prev) => ({
                 ...prev,
@@ -55,7 +99,7 @@ export default function RulesForm({ formData, setFormData, setForm }) {
           <CheckField
             name="رقم العضوية (اجباري)"
             id="box_id"
-            checked={formData.box_id === 1 ? true : false}
+            checked={formData.box_id === 1}
             onChange={(e) =>
               setFormData((prev) => ({
                 ...prev,
@@ -68,7 +112,7 @@ export default function RulesForm({ formData, setFormData, setForm }) {
           <CheckField
             name="النوع (اجباري)"
             id="sex"
-            checked={formData.sex === 1 ? true : false}
+            checked={formData.sex === 1}
             onChange={(e) =>
               setFormData((prev) => ({
                 ...prev,

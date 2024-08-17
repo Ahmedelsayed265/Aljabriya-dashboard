@@ -20,7 +20,8 @@ export default function AddLottery() {
 
   const categoriesInitial = {
     title: "",
-    count: ""
+    count: "",
+    type: "new"
   };
 
   const [form, setForm] = useState("details");

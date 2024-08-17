@@ -13,6 +13,25 @@ export default function StartLottery({ lottery }) {
             عدد المسجلين بالقرعة حتى الآن: {lottery?.usersCount}
           </li>
         </ul>
+        <div className="lotteries_type">
+          <label htmlFor="active_lotteries">
+            <input
+              defaultChecked
+              type="radio"
+              id="active_lotteries"
+              name="lotteries"
+            />
+            <div className="content">
+              <h3>القرعات الفعالة</h3>
+            </div>
+          </label>
+          <label htmlFor="finished_lotteries">
+            <input type="radio" id="finished_lotteries" name="lotteries" />
+            <div className="content">
+              <h3>القرعات المنتهية</h3>
+            </div>
+          </label>
+        </div>
       </div>
     </>
   );

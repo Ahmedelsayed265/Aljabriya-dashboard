@@ -3,6 +3,10 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Link } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
+import { toast } from "react-toastify";
+import { errorHandle } from "../utils/helpers";
+import { axiosInstance } from "../utils/axiosInstance";
+import { useQueryClient } from "@tanstack/react-query";
 import Pagination from "../ui/Pagination";
 import DataLoader from "../ui/DataLoader";
 import useGetLotteries from "../hooks/useGetLotteries";
@@ -12,6 +16,8 @@ export default function LotteriesTable() {
   const { data: lotteries, isLoading } = useGetLotteries(true);
   const [row, setRow] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const queryClient = useQueryClient();
 
   function truncate(inputString) {
     let truncateStringResult;
@@ -105,6 +111,25 @@ export default function LotteriesTable() {
     );
   };
 
+  const confirmDelete = async () => {
+    setLoading(true);
+    try {
+      const res = await axiosInstance.post("/deleteLottery", {
+        lottery_id: row.id
+      });
+      if (res.status === 200) {
+        toast.success("تم الحذف بنجاح");
+        setShowDeleteModal(false);
+        queryClient.invalidateQueries(["lotteries"]);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(errorHandle(error, "حدث خطأ ما"));
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       {isLoading ? (
@@ -130,8 +155,8 @@ export default function LotteriesTable() {
         showDeleteModal={showDeleteModal}
         setShowDeleteModal={setShowDeleteModal}
         deletionTarget={row?.title}
-        onConfirm={() => {}}
-        loading={false}
+        onConfirm={confirmDelete}
+        loading={loading}
       />
     </>
   );
