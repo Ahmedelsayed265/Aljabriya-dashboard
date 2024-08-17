@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { axiosInstance } from "../utils/axiosInstance";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import PageHeader from "../components/PageHeader";
 import InputField from "../ui/InputField";
@@ -10,22 +9,32 @@ import ReactFlagsSelect from "react-flags-select";
 import SubmitButton from "./../ui/SubmitButton";
 
 export default function Settings() {
-  const user = useSelector((state) => state.authedUser.user);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({});
 
   useEffect(() => {
-    setFormData((prev) => ({
-      ...prev,
-      image: user.image || "",
-      email: user.email || "",
-      firstname: user.firstname || "",
-      lastname: user.lastname || "",
-      job: user.job || "",
-      country: user.country || "SA"
-    }));
-  }, [user]);
+    const getSettigs = async () => {
+      try {
+        const res = await axiosInstance.get("/getSettings");
+        if (res?.data?.status === 200) {
+          console.log(res.data.data);
+          setFormData((prev) => ({
+            ...prev,
+            image: res.data.data.image || "",
+            email: res.data.data.email || "",
+            firstname: res.data.data.firstname || "",
+            lastname: res.data.data.lastname || "",
+            job: res.data.data.job || "",
+            country: res.data.data.country || "SA"
+          }));
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getSettigs();
+  }, []);
 
   const handleSelectCountry = (countryCode) => {
     setFormData((prev) => ({
@@ -38,7 +47,11 @@ export default function Settings() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axiosInstance.post("/settings", formData);
+      const res = await axiosInstance.post("/settings", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      });
       if (res?.data?.status === 200) {
         toast.success("تم تحديث بياناتك بنجاح");
         navigate("/");
