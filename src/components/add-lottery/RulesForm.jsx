@@ -42,7 +42,7 @@ export default function RulesForm({ formData, setFormData, setForm }) {
     );
 
     if (images.length > 0) {
-      payload.images = images;
+      payload.lottery_images = images;
     }
 
     const newCategories = formData.categories.map((c) => {

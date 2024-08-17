@@ -1334,4 +1334,64 @@ body {
   line-height: 24px;
   margin-bottom: 4px;
   min-width: 300px;
+}
+
+.account_form .img_field {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+  width: -moz-fit-content;
+  width: fit-content;
+  border: 1px solid #eaecf0;
+  width: 100%;
+  padding: 16px;
+}
+.account_form .img_field .img {
+  background: #f5f5f5;
+  border: 1px solid #eaecf0;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.account_form .img_field .img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+.account_form .img_field .icon {
+  width: 50%;
+  height: 50%;
+  display: flex;
+}
+.account_form .img_field .icon img {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.account_form .img_field .upload {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.account_form .img_field .upload input {
+  display: none;
+}
+.account_form .img_field .upload .content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  border: 1px solid #0045ba;
+  padding: 2px 32px;
+  border-radius: 60px;
+}
+.account_form .img_field .upload .content p {
+  margin: 0;
+  color: #0045ba;
 }/*# sourceMappingURL=main.css.map */
