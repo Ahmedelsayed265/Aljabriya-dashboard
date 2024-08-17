@@ -2,8 +2,11 @@ import PageHeader from "../components/PageHeader";
 import DaysSliderFilter from "../components/DaysSliderFilter";
 import LotteriesSlider from "../components/LotteriesSlider";
 import LotteriesTable from "../components/LotteriesTable";
+import useGetLotteries from "../hooks/useGetLotteries";
+import DataLoader from "../ui/DataLoader";
 
 export default function Home() {
+  const { data: lotteries, isLoading } = useGetLotteries();
   return (
     <section className="home">
       <div className="container">
@@ -25,7 +28,11 @@ export default function Home() {
                 </form>
               </div>
               <DaysSliderFilter />
-              <LotteriesSlider />
+              {isLoading ? (
+                <DataLoader />
+              ) : (
+                <LotteriesSlider lotteries={lotteries} />
+              )}
               <div className="lotteries-pagination" />
               <div className="header">
                 <h1>جميع القرعات</h1>

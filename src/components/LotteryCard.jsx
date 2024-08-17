@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 
-export default function LotteryCard() {
+export default function LotteryCard({ lottery }) {
   return (
     <div className="lottery_card">
       <div className="img">
-        <img src="/assets/images/sportClub.png" alt="slide1" />
+        <img
+          src={lottery?.image || "/public/assets/images/sportClub.png"}
+          alt="slide1"
+        />
         <div className="timer">
           <div className="block">
             <div className="d-flex gap-2">
@@ -32,17 +35,20 @@ export default function LotteryCard() {
         </div>
       </div>
       <div className="content">
-        <h4>نوادي رياضية</h4>
+        <h4>{lottery?.title}</h4>
         <p>
           <img src="/assets/images/users.svg" alt="users" />
-          عدد المسجلين بالقرعة حتى الآن: ٢٥٠
+          عدد المسجلين بالقرعة حتى الآن: {lottery?.users}
         </p>
         <p>
           <img src="/assets/images/calendar.svg" alt="calender" />
-          آخر موعد للتسجيل: ٢٠ / ٦ / ٢٠٢٤
+          آخر موعد للتسجيل: {lottery?.to_date}
         </p>
       </div>
-      <Link className="view_lottery" to="/">
+      <Link
+        className="view_lottery"
+        to={`/lotteries/choose-winner/${lottery?.id}`}
+      >
         عرض القرعة
       </Link>
     </div>

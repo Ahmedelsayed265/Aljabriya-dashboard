@@ -274,3 +274,12 @@ $transation: 0.3s ease-in-out;
   font-weight: 600;
   color: $lightGray;
 }
+
+.table-title{
+  color: $main;
+  font-size: 24px;
+  margin-top: 16px;
+  &.blue{
+    color: $second;
+  }
+}

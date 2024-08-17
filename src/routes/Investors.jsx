@@ -1,7 +1,6 @@
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import PageHeader from "../components/PageHeader";
-import Pagination from "../ui/Pagination";
 
 export default function Investors() {
   const investors = [
@@ -128,7 +127,6 @@ export default function Investors() {
                       <Column body={deleteTemplate} />
                     </DataTable>
                   </div>
-                  <Pagination count={30} />
                 </>
               ) : (
                 <div className="empty_data">

@@ -2,7 +2,7 @@ import LotteryCard from "./LotteryCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
-export default function LotteriesSlider() {
+export default function LotteriesSlider({ lotteries }) {
   return (
     <Swiper
       spaceBetween={16}
@@ -29,21 +29,11 @@ export default function LotteriesSlider() {
         }
       }}
     >
-      <SwiperSlide>
-        <LotteryCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <LotteryCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <LotteryCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <LotteryCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <LotteryCard />
-      </SwiperSlide>
+      {lotteries?.data?.map((lottery, index) => (
+        <SwiperSlide key={index}>
+          <LotteryCard lottery={lottery} />
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 }

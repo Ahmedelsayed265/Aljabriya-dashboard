@@ -254,6 +254,15 @@ input[type=number]::-webkit-inner-spin-button {
   color: #eeeeee;
 }
 
+.table-title {
+  color: #121212;
+  font-size: 24px;
+  margin-top: 16px;
+}
+.table-title.blue {
+  color: #0045ba;
+}
+
 body {
   background: #f2f4f7;
 }
@@ -757,6 +766,60 @@ body {
   gap: 8px;
   width: 50%;
 }
+.main .inner_card .start_lottery_img {
+  width: 100%;
+  height: 360px;
+}
+.main .inner_card .start_lottery_img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+}
+.main .inner_card .check_lottery {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.main .inner_card .check_lottery label {
+  width: 100%;
+}
+.main .inner_card .check_lottery label .content {
+  display: flex;
+  border: 1px solid #eaecf0;
+  padding: 12px;
+  height: 100%;
+  border-radius: 8px;
+  gap: 8px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  background: #f9fafb;
+  flex-direction: column;
+  cursor: pointer;
+}
+.main .inner_card .check_lottery label .content h6 {
+  margin: 0;
+}
+.main .inner_card .check_lottery label input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  display: none;
+}
+.main .inner_card .check_lottery label input:checked + .content {
+  background: rgba(228, 238, 255, 0.5019607843);
+  color: #0045ba;
+  border: 1px solid #0045ba;
+}
+.main .inner_card .submit_btn {
+  background: #0045ba;
+  color: #fff;
+  border-radius: 80px;
+  padding: 4px 24px;
+}
 .main .row_img {
   display: flex;
   align-items: center;
@@ -1253,4 +1316,22 @@ body {
 }
 .confirmation_modal .confirm.red:hover {
   background: #ff3a29;
+}
+
+.winners_div {
+  padding: 0 16px;
+}
+.winners_div ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: disc;
+  padding: 0 16px 0;
+  margin-top: 12px;
+}
+.winners_div ul li {
+  color: #121212;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 4px;
+  min-width: 300px;
 }/*# sourceMappingURL=main.css.map */
