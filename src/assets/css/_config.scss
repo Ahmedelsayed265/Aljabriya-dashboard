@@ -329,3 +329,17 @@ $transation: 0.3s ease-in-out;
   padding-left: 0;
   padding-right: 12px;
 }
+
+.modal-header {
+  border-bottom: 0;
+  .btn-close {
+    box-shadow: none !important;
+    background-image: url("/public/assets/images/close.svg");
+    margin: 0;
+    margin-inline-start: auto;
+  }
+  h6 {
+    color: $main;
+    margin-bottom: 0;
+  }
+}

@@ -2,11 +2,14 @@ export default function PaginationNumbers({
   currentPage: page,
   lastPage: max,
   param,
-  setSearchParams
+  setSearchParams,
+  searchParams
 }) {
   function handleSetParams(event, n) {
     event.preventDefault();
-    setSearchParams({ [param]: n });
+    const params = new URLSearchParams(searchParams);
+    params.set(param, n);
+    setSearchParams(params);
   }
 
   return (

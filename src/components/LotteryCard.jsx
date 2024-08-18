@@ -8,7 +8,7 @@ export default function LotteryCard({ lottery }) {
           src={lottery?.image || "/assets/images/sportClub.png"}
           alt="slide1"
         />
-        <div className="timer">
+        {/* <div className="timer">
           <div className="block">
             <div className="d-flex gap-2">
               <div className="box">0</div>
@@ -32,7 +32,7 @@ export default function LotteryCard({ lottery }) {
             </div>
             <span>ساعات</span>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="content">
         <h4>{lottery?.title}</h4>

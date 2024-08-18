@@ -9,38 +9,48 @@ export default function Pagination({
 }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const lastPage = Math.ceil(count / pageSize);
-  const currentPage = searchParams.get(param) || 1;
+  const currentPage = parseInt(searchParams.get(param)) || 1;
 
   const atStart = currentPage <= 1;
   const atEnd = currentPage >= lastPage;
 
   function handlePrev(event) {
     event.preventDefault();
-    !atStart &&
-      setSearchParams((prev) => ({ ...prev, [param]: currentPage - 1 }));
+    if (!atStart) {
+      const params = new URLSearchParams(searchParams);
+      params.set(param, currentPage - 1);
+      setSearchParams(params);
+    }
   }
 
   function handleNext(event) {
     event.preventDefault();
-    !atEnd &&
-      setSearchParams((prev) => ({ ...prev, [param]: +currentPage + 1 }));
+    if (!atEnd) {
+      const params = new URLSearchParams(searchParams);
+      params.set(param, currentPage + 1);
+      setSearchParams(params);
+    }
   }
 
   function handleFirstPage(event) {
     event.preventDefault();
-    setSearchParams((prev) => ({ ...prev, [param]: 1 }));
+    const params = new URLSearchParams(searchParams);
+    params.set(param, 1);
+    setSearchParams(params);
   }
 
   function handleLastPage(event) {
     event.preventDefault();
-    setSearchParams((prev) => ({ ...prev, [param]: lastPage }));
+    const params = new URLSearchParams(searchParams);
+    params.set(param, lastPage);
+    setSearchParams(params);
   }
 
   return (
     <div className={`pagination_component mt-4 ${className}`}>
       <div className="paginator_btns">
         <button onClick={handleFirstPage}>
-          <i className="fa-regular fa-angles-right"></i> 
+          <i className="fa-regular fa-angles-right"></i>
         </button>
         <button onClick={handlePrev}>
           <i className="fa-regular fa-angle-right"></i>
@@ -51,6 +61,7 @@ export default function Pagination({
         lastPage={lastPage}
         param={param}
         setSearchParams={setSearchParams}
+        searchParams={searchParams}
       />
       <div className="paginator_btns">
         <button onClick={handleNext}>

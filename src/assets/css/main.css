@@ -314,6 +314,20 @@ input[type=number]::-webkit-inner-spin-button {
   padding-right: 12px;
 }
 
+.modal-header {
+  border-bottom: 0;
+}
+.modal-header .btn-close {
+  box-shadow: none !important;
+  background-image: url("/public/assets/images/close.svg");
+  margin: 0;
+  margin-inline-start: auto;
+}
+.modal-header h6 {
+  color: #121212;
+  margin-bottom: 0;
+}
+
 body {
   background: #f2f4f7;
 }
@@ -613,7 +627,7 @@ body {
 }
 .main .inner_card .lottery_card .img {
   width: 100%;
-  aspect-ratio: 3/2.5;
+  aspect-ratio: 3/2;
   position: relative;
 }
 .main .inner_card .lottery_card .img img {
@@ -881,7 +895,12 @@ body {
 }
 .main .row_img img {
   aspect-ratio: 1/1;
-  height: 48px;
+  border-radius: 50%;
+  height: 64px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 .main .delete_icon {
   cursor: pointer;
@@ -1047,23 +1066,6 @@ body {
   border: 1px dashed #aaaaaa;
   border-radius: 12px;
 }
-.form_ui .check_field .form-check {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row-reverse;
-  padding-left: 0 !important;
-}
-.form_ui .check_field .form-check input {
-  cursor: pointer;
-  box-shadow: none !important;
-}
-.form_ui .check_field .form-check label {
-  width: 100%;
-  display: block;
-  cursor: pointer;
-}
 .form_ui .title {
   font-size: 16px;
   color: #121212;
@@ -1165,6 +1167,29 @@ body {
 .form_ui .images_upload_field .content p {
   margin: 0;
   color: gray;
+}
+.form_ui .submit_btn {
+  background: #0045ba;
+  color: #fff;
+  border-radius: 80px;
+  padding: 4px 24px;
+}
+.form_ui .form-check {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  padding-left: 0 !important;
+}
+.form_ui .form-check input {
+  cursor: pointer;
+  box-shadow: none !important;
+}
+.form_ui .form-check label {
+  width: 100%;
+  display: block;
+  cursor: pointer;
 }
 
 .select_addon_row {
@@ -1387,6 +1412,9 @@ body {
   min-width: 300px;
 }
 
+.account_form textarea {
+  height: 100px !important;
+}
 .account_form .img_field {
   display: flex;
   align-items: center;

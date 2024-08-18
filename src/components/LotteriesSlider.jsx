@@ -29,7 +29,7 @@ export default function LotteriesSlider({ lotteries }) {
         }
       }}
     >
-      {lotteries?.data?.map((lottery, index) => (
+      {lotteries?.map((lottery, index) => (
         <SwiperSlide key={index}>
           <LotteryCard lottery={lottery} />
         </SwiperSlide>

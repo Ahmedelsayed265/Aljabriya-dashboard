@@ -2,28 +2,23 @@ import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "../utils/axiosInstance";
 import { useSearchParams } from "react-router-dom";
 
-export default function useGetLotteries({ page = 1, limit = 10 } = {}) {
+export default function useGetActiveLotteries() {
   const [searchParams] = useSearchParams();
-  const search = searchParams.get("search");
-  const status = searchParams.get("status") || "active";
+  const search = searchParams.get("searchActive");
 
   const { isLoading, data, error, refetch } = useQuery({
-    queryKey: ["lotteries", page, limit, search, status],
+    queryKey: ["active-lotteries", search],
     queryFn: async () => {
       try {
-        let url = `/lotteriesWithPagination?page=${page}&limit=${limit}&status=${status}`;
-
+        let url = `/lotteriesWithPagination`;
         if (search) {
-          url += `&search=${encodeURIComponent(search)}`;
+          url += `?search=${encodeURIComponent(search)}`;
         }
 
         const res = await axiosInstance.get(url);
 
         if (res.status === 200) {
-          return {
-            data: res.data.data?.Data,
-            count: res.data.data?.total_count
-          };
+          return res.data.data?.Data;
         }
       } catch (error) {
         console.error("Error Fetching Lotteries:", error.message);
