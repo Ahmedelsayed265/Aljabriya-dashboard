@@ -226,6 +226,10 @@ $transation: 0.3s ease-in-out;
     display: flex;
     align-items: center;
     justify-content: center;
+    &:active {
+      background: none;
+      border: 0;
+    }
     svg {
       height: 20px;
     }

@@ -203,6 +203,10 @@ input[type=number]::-webkit-inner-spin-button {
   align-items: center;
   justify-content: center;
 }
+.actions .dropdown-toggle:active {
+  background: none;
+  border: 0;
+}
 .actions .dropdown-toggle svg {
   height: 20px;
 }

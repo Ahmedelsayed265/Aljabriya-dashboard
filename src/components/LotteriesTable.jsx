@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { errorHandle } from "../utils/helpers";
@@ -12,10 +12,17 @@ import useGetLotteries from "../hooks/useGetLotteries";
 import ConfirmDeleteModal from "../ui/ConfirmDeleteModal";
 
 export default function LotteriesTable() {
-  const { data: lotteries, isLoading, refetch } = useGetLotteries();
   const [row, setRow] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [searchParams] = useSearchParams();
+  const currentPage = searchParams.get("page") || 1;
+
+  const {
+    data: lotteries,
+    isLoading,
+    refetch
+  } = useGetLotteries({ page: currentPage });
 
   function truncate(inputString) {
     let truncateStringResult;
