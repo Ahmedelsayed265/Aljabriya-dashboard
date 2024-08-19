@@ -32,6 +32,7 @@ export default function AddLottery() {
     : ["details", "media", "rules"];
 
   useEffect(() => {
+
     setFormData({
       categories: lottery?.categories || [categoriesInitial],
       title: lottery?.title || "",
@@ -42,9 +43,9 @@ export default function AddLottery() {
       policy: lottery?.policy || "",
       image: lottery?.image || "",
       to_date: lottery?.to_date || "",
-      age: lottery?.age,
-      sex: lottery?.sex,
-      box_id: lottery?.box_id,
+      age: lottery?.age || 0,
+      sex: lottery?.sex || 0,
+      box_id: lottery?.box_id || 0,
       lottery_images: lottery?.images?.map((image) => image?.image) || []
     });
 

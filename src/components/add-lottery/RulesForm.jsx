@@ -9,10 +9,10 @@ import useGetLotteries from "../../hooks/useGetLotteries";
 
 export default function RulesForm({ formData, setFormData, setForm }) {
   const { id } = useParams();
+  const { refetch } = useGetLotteries();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { refetch } = useGetLotteries();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

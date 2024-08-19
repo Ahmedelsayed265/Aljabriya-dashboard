@@ -45,6 +45,7 @@ export default function ParticipantsForm({ setForm }) {
                   <Column body={categoryTemplate} header="التصنيف" />
                   <Column field="age" header="السن" />
                   <Column body={statusTemplate} header="مطابق للشروط" />
+                  <Column />
                 </DataTable>
               </div>
               {users?.count > 10 && <PaginationNumbers count={users?.count} />}
