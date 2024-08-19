@@ -67,7 +67,16 @@ export default function Home() {
               {activeLotteriesLoading ? (
                 <DataLoader />
               ) : (
-                <LotteriesSlider lotteries={activeLotteries} />
+                <>
+                  {!activeLotteries || activeLotteries?.length === 0 ? (
+                    <div className="empty_data">
+                      <img src="/assets/images/noData.svg" alt="no-data" />
+                      <h5>لا يوجد قرعات بهذا الاسم</h5>
+                    </div>
+                  ) : (
+                    <LotteriesSlider lotteries={activeLotteries} />
+                  )}
+                </>
               )}
               <div className="lotteries-pagination" />
               <div className="header">

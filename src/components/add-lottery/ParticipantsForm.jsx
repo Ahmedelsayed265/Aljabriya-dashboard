@@ -4,6 +4,7 @@ import { Column } from "primereact/column";
 import useGetLotteryUsers from "../../hooks/useGetLotteryUsers";
 import PaginationNumbers from "./../../ui/PaginationNumbers";
 import DataLoader from "./../../ui/DataLoader";
+import SwitchAbility from "../SwitchAbility";
 
 export default function ParticipantsForm({ setForm }) {
   const { id } = useParams();
@@ -26,6 +27,10 @@ export default function ParticipantsForm({ setForm }) {
     return <span>{rowData.category.title}</span>;
   };
 
+  const switchStatus = (rowData) => {
+    return <SwitchAbility rowData={rowData} userId={rowData.id} />;
+  };
+
   return (
     <form className="form_ui">
       <div className="row m-0">
@@ -45,7 +50,7 @@ export default function ParticipantsForm({ setForm }) {
                   <Column body={categoryTemplate} header="التصنيف" />
                   <Column field="age" header="السن" />
                   <Column body={statusTemplate} header="مطابق للشروط" />
-                  <Column />
+                  <Column body={switchStatus} />
                 </DataTable>
               </div>
               {users?.count > 10 && <PaginationNumbers count={users?.count} />}

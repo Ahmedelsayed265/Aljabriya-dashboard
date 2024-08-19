@@ -6,6 +6,7 @@ import { axiosInstance } from "../utils/axiosInstance";
 import { errorHandle } from "../utils/helpers";
 import { useSearchParams } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
+import ConfirmDeleteModal from "./../ui/ConfirmDeleteModal";
 import PageHeader from "../components/PageHeader";
 import useGetImpotedUsers from "../hooks/useGetImpotedUsers";
 import DataLoader from "../ui/DataLoader";
@@ -18,6 +19,8 @@ export default function Investors() {
   const search = searchParams.get("search");
   const [searchValue, setSearchValue] = useState(search || "");
   const { data: investors, isLoading } = useGetImpotedUsers();
+  const [showModal, setShowModal] = useState(false);
+  const [rowId, setRowId] = useState(null);
 
   useEffect(() => {
     setSearchValue(search || "");
@@ -60,25 +63,44 @@ export default function Investors() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [file]);
 
-  // const editTemplate = () => {
-  //   return (
-  //     <button disabled={loading}>
-  //       <img src="/assets/images/edit.svg" alt="edit" />
-  //     </button>
-  //   );
-  // };
-
-  // const deleteTemplate = () => {
-  //   return (
-  //     <button disabled={loading}>
-  //       <img src="/assets/images/delete.svg" alt="delete" />
-  //     </button>
-  //   );
-  // };
+  const deleteTemplate = (rowData) => {
+    return (
+      <button
+        disabled={loading}
+        onClick={() => {
+          setShowModal(true);
+          setRowId(rowData.national_id);
+        }}
+      >
+        <img src="/assets/images/delete.svg" alt="delete" />
+      </button>
+    );
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearchParams({ search: e.target[0].value });
+  };
+
+  const confirmDelete = async () => {
+    setLoading(true);
+    try {
+      const res = await axiosInstance.post("/deleteContributor", {
+        national_id: Number(rowId)
+      });
+      if (res.data.status === 200) {
+        toast.success("تم الحذف بنجاح");
+        queryClient.invalidateQueries({ queryKey: ["imported-users"] });
+        setShowModal(false);
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(errorHandle(error, "حدث خطأ ما"));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -142,8 +164,7 @@ export default function Investors() {
                           <Column field="mobile" header="رقم الموبايل" />
                           <Column field="national_id" header="الرقم المدني" />
                           <Column field="box_id" header="رقم الصندوق" />
-                          {/* <Column body={editTemplate} />
-                          <Column body={deleteTemplate} /> */}
+                          <Column body={deleteTemplate} />
                         </DataTable>
                       </div>
                     </>
@@ -186,6 +207,13 @@ export default function Investors() {
           </div>
         </div>
       </div>
+      <ConfirmDeleteModal
+        showDeleteModal={showModal}
+        setShowDeleteModal={setShowModal}
+        deletionTarget={rowId}
+        loading={loading}
+        onConfirm={confirmDelete}
+      />
     </section>
   );
 }

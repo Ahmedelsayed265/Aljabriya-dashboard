@@ -139,6 +139,11 @@ $transation: 0.3s ease-in-out;
     margin-left: auto;
     justify-content: center;
   }
+  .form-check-input {
+    margin-top: 12px;
+    cursor: pointer;
+    box-shadow: none !important;
+  }
 }
 
 .status-Ended {

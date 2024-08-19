@@ -129,25 +129,6 @@ export default function LotteriesTable() {
     );
   };
 
-  // const confirmDelete = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const res = await axiosInstance.post("/deleteLottery", {
-  //       lottery_id: row.id
-  //     });
-  //     if (res.status === 200) {
-  //       toast.success("تم الحذف بنجاح");
-  //       setShowDeleteModal(false);
-  //       refetch();
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //     toast.error(errorHandle(error, "حدث خطأ ما"));
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
   return (
     <>
       {isLoading ? (
