@@ -35,7 +35,7 @@ export default function DetailsForm({
             placeholder="أدخل رابط البث المباشر"
             id="live_link"
             name="live_link"
-            type="url"
+            type="text"
             required
             value={formData.live_link}
             onChange={(e) => handleChange(e, setFormData)}

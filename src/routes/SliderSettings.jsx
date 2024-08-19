@@ -40,7 +40,7 @@ export default function SliderSettings() {
     e.preventDefault();
     setLoading(true);
     try {
-      const endPoint = formData?.id ? "/updateSlider" : "/addSlider";
+      const endPoint = formData?.slider_id ? "/updateSlider" : "/addSlider";
       let payload = {
         rank: formData?.rank,
         title: formData?.title,
@@ -62,7 +62,7 @@ export default function SliderSettings() {
       });
       if (res?.data?.status === 200) {
         toast.success(
-          formData?.id ? "تم تعديل الاسلايد بنجاح" : "تم اضافة الاسلايد بنجاح"
+          formData?.slider_id ? "تم تعديل الاسلايد بنجاح" : "تم اضافة الاسلايد بنجاح"
         );
         setShowModal(false);
         queryClient.invalidateQueries(["slider"]);
