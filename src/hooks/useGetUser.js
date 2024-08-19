@@ -8,7 +8,7 @@ export default function useGetUser(enabled) {
       try {
         const res = await axiosInstance.post("/getUser");
         if (res.status === 200) {
-          return res.data.data;
+          return res.data.data || {};
         }
       } catch (error) {
         console.error("Error fetching profile:", error.message);

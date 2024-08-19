@@ -32,7 +32,6 @@
   margin: 0;
   box-sizing: border-box;
   line-height: 36px;
-  scrollbar-width: none;
   scroll-behavior: smooth;
   direction: rtl;
   font-family: "Suisse-Regular", sans-serif;
@@ -334,7 +333,7 @@ $transation: 0.3s ease-in-out;
   border-bottom: 0;
   .btn-close {
     box-shadow: none !important;
-    background-image: url("/public/assets/images/close.svg");
+    background-image: url("/assets/images/close.svg");
     margin: 0;
     margin-inline-start: auto;
   }

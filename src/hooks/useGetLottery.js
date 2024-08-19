@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "../utils/axiosInstance";
 
 export default function useGetLottery(id) {
-  const { isLoading, data, error } = useQuery({
+  const { isLoading, data, refetch, error } = useQuery({
     queryKey: ["lottery", id],
     queryFn: async () => {
       try {
@@ -20,5 +20,5 @@ export default function useGetLottery(id) {
     refetchOnMount: false,
     refetchOnReconnect: false
   });
-  return { isLoading, data, error };
+  return { isLoading, data, refetch, error };
 }

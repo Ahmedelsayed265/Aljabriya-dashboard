@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { errorHandle } from "../../utils/helpers";
 import { axiosInstance } from "../../utils/axiosInstance";
+import { useQueryClient } from "@tanstack/react-query";
 import CheckField from "../../ui/CheckField";
 import useGetLotteries from "../../hooks/useGetLotteries";
 
@@ -10,6 +11,7 @@ export default function RulesForm({ formData, setFormData, setForm }) {
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { refetch } = useGetLotteries();
 
   const handleSubmit = async (e) => {
@@ -45,16 +47,7 @@ export default function RulesForm({ formData, setFormData, setForm }) {
       payload.lottery_images = images;
     }
 
-    const newCategories = formData.categories.map((c) => {
-      const cat = {
-        title: c.title,
-        count: c.count
-      };
-      if (c.id) {
-        cat.id = c.id;
-      }
-      return cat;
-    });
+    const newCategories = formData.categories.filter((c) => !c.id);
 
     payload.categories = newCategories;
 
@@ -67,12 +60,14 @@ export default function RulesForm({ formData, setFormData, setForm }) {
       if (res.data.data) {
         toast.success(id ? "تم تحديث القرعة بنجاح" : "تم تسجيل القرعة بنجاح");
         navigate("/lotteries");
+        queryClient.invalidateQueries(["lottery", id]);
         refetch();
       } else {
-        toast.error("حدث خطأ ما");
+        toast.error(res.data.message || "حدث خطأ ما");
       }
     } catch (error) {
       console.log(error);
+
       toast.error(errorHandle(error, "حدث خطأ ما"));
     } finally {
       setLoading(false);
@@ -86,7 +81,7 @@ export default function RulesForm({ formData, setFormData, setForm }) {
           <CheckField
             name="العمر (اجباري)"
             id="age"
-            checked={formData.age === 1}
+            checked={Number(formData.age) === 1}
             onChange={(e) =>
               setFormData((prev) => ({
                 ...prev,
@@ -99,7 +94,7 @@ export default function RulesForm({ formData, setFormData, setForm }) {
           <CheckField
             name="رقم العضوية (اجباري)"
             id="box_id"
-            checked={formData.box_id === 1}
+            checked={Number(formData.box_id) === 1}
             onChange={(e) =>
               setFormData((prev) => ({
                 ...prev,
@@ -112,7 +107,7 @@ export default function RulesForm({ formData, setFormData, setForm }) {
           <CheckField
             name="النوع (اجباري)"
             id="sex"
-            checked={formData.sex === 1}
+            checked={Number(formData.sex) === 1}
             onChange={(e) =>
               setFormData((prev) => ({
                 ...prev,

@@ -60,6 +60,7 @@ export default function Categories({
             type="number"
             required
             name="count"
+            disabled={item?.type !== "new"}
             value={item.count}
             onChange={(e) => handleChange(e, index)}
           />

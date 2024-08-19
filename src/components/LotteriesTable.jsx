@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Link, useSearchParams } from "react-router-dom";
@@ -9,12 +8,8 @@ import { axiosInstance } from "../utils/axiosInstance";
 import Pagination from "../ui/Pagination";
 import DataLoader from "../ui/DataLoader";
 import useGetLotteries from "../hooks/useGetLotteries";
-import ConfirmDeleteModal from "../ui/ConfirmDeleteModal";
 
 export default function LotteriesTable() {
-  const [row, setRow] = useState(null);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [searchParams] = useSearchParams();
   const currentPage = searchParams.get("page") || 1;
 
@@ -95,13 +90,31 @@ export default function LotteriesTable() {
             </Dropdown.Item>
             <Dropdown.Item>
               <button
-                onClick={() => {
-                  setRow(rowData);
-                  setShowDeleteModal(true);
+                onClick={async () => {
+                  try {
+                    const res = await axiosInstance.post(
+                      "/changeLotteryStatus",
+                      {
+                        lottery_id: rowData.id,
+                        type: Number(rowData?.type) === 1 ? 0 : 1
+                      }
+                    );
+                    if (res.status === 200) {
+                      toast.success(
+                        Number(rowData?.type) === 1
+                          ? "تم تعطيل القرعة بنجاح"
+                          : "تم تفعيل القرعة بنجاح"
+                      );
+                      refetch();
+                    }
+                  } catch (error) {
+                    console.log(error);
+                    errorHandle(error, "حدث خطأ ما");
+                  }
                 }}
               >
-                <img src="/assets/images/delete.svg" alt="delete" />
-                حذف القرعة
+                <img src="/assets/images/lott.svg" alt="lott" />
+                {Number(rowData?.type) === 1 ? "تعطيل القرعة" : "تفعيل القرعة"}
               </button>
             </Dropdown.Item>
             <Dropdown.Item>
@@ -116,24 +129,24 @@ export default function LotteriesTable() {
     );
   };
 
-  const confirmDelete = async () => {
-    setLoading(true);
-    try {
-      const res = await axiosInstance.post("/deleteLottery", {
-        lottery_id: row.id
-      });
-      if (res.status === 200) {
-        toast.success("تم الحذف بنجاح");
-        setShowDeleteModal(false);
-        refetch();
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error(errorHandle(error, "حدث خطأ ما"));
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const confirmDelete = async () => {
+  //   setLoading(true);
+  //   try {
+  //     const res = await axiosInstance.post("/deleteLottery", {
+  //       lottery_id: row.id
+  //     });
+  //     if (res.status === 200) {
+  //       toast.success("تم الحذف بنجاح");
+  //       setShowDeleteModal(false);
+  //       refetch();
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     toast.error(errorHandle(error, "حدث خطأ ما"));
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <>
@@ -156,13 +169,6 @@ export default function LotteriesTable() {
           {lotteries?.count > 10 && <Pagination count={lotteries?.count} />}
         </>
       )}
-      <ConfirmDeleteModal
-        showDeleteModal={showDeleteModal}
-        setShowDeleteModal={setShowDeleteModal}
-        deletionTarget={row?.title}
-        onConfirm={confirmDelete}
-        loading={loading}
-      />
     </>
   );
 }

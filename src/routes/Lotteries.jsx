@@ -57,7 +57,6 @@ export default function Lotteries() {
               <div className="lotteries_type">
                 <label htmlFor="active">
                   <input
-                    defaultChecked={searchParams.get("status") === "active"}
                     type="radio"
                     id="active"
                     name="lotteries"
@@ -71,7 +70,6 @@ export default function Lotteries() {
                 </label>
                 <label htmlFor="inactive">
                   <input
-                    defaultChecked={searchParams.get("status") === "finished"}
                     type="radio"
                     id="inactive"
                     name="lotteries"

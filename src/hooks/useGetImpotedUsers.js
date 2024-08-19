@@ -1,19 +1,27 @@
 import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "../utils/axiosInstance";
+import { useSearchParams } from "react-router-dom";
 
-export default function useGetLotteryUsers(id) {
+export default function useGetImpotedUsers() {
+  const [searchParms] = useSearchParams();
+  const search = searchParms.get("search");
+
   const { isLoading, data, error } = useQuery({
-    queryKey: ["lottery-users", id],
+    queryKey: ["imported-users", search],
     queryFn: async () => {
       try {
-        const res = await axiosInstance.post("/getLotteriesUsers", {
-          lottery_id: id
-        });
+        let url = "/searchInUsersFromImport";
+
+        if (search) {
+          url += `&search=${encodeURIComponent(search)}`;
+        }
+
+        const res = await axiosInstance.get(url);
         if (res.status === 200) {
           return res.data.data;
         }
       } catch (error) {
-        console.error("Error fetching profile:", error.message);
+        console.error("Error fetching users:", error.message);
         throw error;
       }
     },

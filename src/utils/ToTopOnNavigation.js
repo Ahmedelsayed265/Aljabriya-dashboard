@@ -6,8 +6,6 @@ const ToTopOnNavigation = () => {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    console.log(searchParams);
-    
     const isSearching = searchParams.size > 0;
 
     if (!isSearching) {

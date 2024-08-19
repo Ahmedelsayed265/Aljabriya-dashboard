@@ -22,25 +22,28 @@ export default function ParticipantsForm({ setForm }) {
     );
   };
 
+  const categoryTemplate = (rowData) => {
+    return <span>{rowData.category.title}</span>;
+  };
+
   return (
     <form className="form_ui">
       <div className="row m-0">
         <div className="col-12 p-2">
           {isLoading ? (
             <DataLoader />
-          ) : users && users.data && users.data.length > 0 ? (
+          ) : users && users?.length > 0 ? (
             <>
               <div className="table-container">
-                <DataTable value={users.data}>
+                <DataTable value={users}>
                   <Column field="id" header="ID" />
                   <Column field="full_name" header="الاسم" />
                   <Column field="mobile" header="رقم الموبايل" />
                   <Column field="national_id" header="الرقم المدني" />
                   <Column field="national_id" header="الرقم المدني" />
                   <Column field="box_id" header="رقم الصندوق" />
-                  <Column field="category" header="التصنيف" />
+                  <Column body={categoryTemplate} header="التصنيف" />
                   <Column field="age" header="السن" />
-                  <Column field="sex" header="النوع" />
                   <Column body={statusTemplate} header="مطابق للشروط" />
                 </DataTable>
               </div>
