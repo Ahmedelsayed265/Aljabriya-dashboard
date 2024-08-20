@@ -1,4 +1,5 @@
 import { Form, Modal } from "react-bootstrap";
+import { useEffect } from "react";
 import InputField from "./InputField";
 
 export default function SliderCreateModal({
@@ -7,8 +8,25 @@ export default function SliderCreateModal({
   formData,
   setFormData,
   eventFun,
-  loading
+  loading,
+  row,
+  setRow
 }) {
+  console.log(row);
+
+  useEffect(() => {
+    if (row?.id) {
+      setFormData({
+        slider_id: row?.id,
+        slider_image: row?.image || "",
+        rank: row?.rank || "",
+        title: row?.title || "",
+        description: row?.description || "",
+        status: row?.status
+      });
+    }
+  }, [row, setFormData]);
+
   return (
     <Modal
       show={showModal}
@@ -20,6 +38,7 @@ export default function SliderCreateModal({
           title: "",
           description: ""
         });
+        setRow({});
         setShowModal(false);
       }}
       aria-labelledby="contained-modal-title-vcenter"
@@ -118,7 +137,7 @@ export default function SliderCreateModal({
                 }
               />
             </div>
-            {formData.rank && (
+            {formData.slider_id && (
               <div className="col-12 p-2">
                 <Form.Check
                   type="switch"
@@ -131,7 +150,7 @@ export default function SliderCreateModal({
                       status: e.target.checked ? 1 : 0
                     })
                   }
-                  checked={formData.status === 1}
+                  checked={Number(formData.status) === 1}
                 />
               </div>
             )}

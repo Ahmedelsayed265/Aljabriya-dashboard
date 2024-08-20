@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { errorHandle } from "../utils/helpers";
@@ -22,19 +22,6 @@ export default function SliderSettings() {
     title: "",
     description: ""
   });
-
-  useEffect(() => {
-    if (row?.id) {
-      setFormData({
-        slider_id: row?.id,
-        slider_image: row?.image || "",
-        rank: row?.rank || "",
-        title: row?.title || "",
-        description: row?.description || "",
-        status: row?.status
-      });
-    }
-  }, [row]);
 
   const addSlide = async (e) => {
     e.preventDefault();
@@ -62,7 +49,9 @@ export default function SliderSettings() {
       });
       if (res?.data?.status === 200) {
         toast.success(
-          formData?.slider_id ? "تم تعديل الاسلايد بنجاح" : "تم اضافة الاسلايد بنجاح"
+          formData?.slider_id
+            ? "تم تعديل الاسلايد بنجاح"
+            : "تم اضافة الاسلايد بنجاح"
         );
         setShowModal(false);
         queryClient.invalidateQueries(["slider"]);
@@ -216,6 +205,8 @@ export default function SliderSettings() {
         setFormData={setFormData}
         eventFun={addSlide}
         loading={loading}
+        row={row}
+        setRow={setRow}
       />
     </section>
   );

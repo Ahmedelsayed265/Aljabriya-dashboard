@@ -10,7 +10,7 @@ export default function useGetImpotedUsers() {
     queryKey: ["imported-users", search],
     queryFn: async () => {
       try {
-        let url = "/searchInUsersFromImport";
+        let url = "/getUserFromImport";
 
         if (search) {
           url += `&search=${encodeURIComponent(search)}`;

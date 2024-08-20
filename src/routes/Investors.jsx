@@ -160,10 +160,7 @@ export default function Investors() {
                       <div className="table-container">
                         <DataTable value={investors}>
                           <Column field="id" header="م" />
-                          <Column field="full_name" header="الاسم" />
-                          <Column field="mobile" header="رقم الموبايل" />
                           <Column field="national_id" header="الرقم المدني" />
-                          <Column field="box_id" header="رقم الصندوق" />
                           <Column body={deleteTemplate} />
                         </DataTable>
                       </div>
