@@ -26,7 +26,13 @@ export default function Settings() {
             firstname: res.data.data.firstname || "",
             lastname: res.data.data.lastname || "",
             job: res.data.data.job || "",
-            country: res.data.data.country || "SA"
+            country: res.data.data.country || "SA",
+            twitter: res.data.data.twitter || "",
+            linkedin: res.data.data.linkedin || "",
+            facebook: res.data.data.facebook || "",
+            google: res.data.data.google || "",
+            youtube: res.data.data.youtube || "",
+            instagram: res.data.data.instagram || ""
           }));
         }
       } catch (error) {
@@ -189,6 +195,78 @@ export default function Settings() {
                         }}
                       />
                     </div>
+                  </div>
+                  <div className="col-lg-6 col-12 p-2">
+                    <InputField
+                      label="twitter"
+                      id="twitter"
+                      name="twitter"
+                      type="text"
+                      value={formData.twitter}
+                      onChange={(e) =>
+                        setFormData({ ...formData, twitter: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div className="col-lg-6 col-12 p-2">
+                    <InputField
+                      label="linkedin"
+                      id="linkedin"
+                      name="linkedin"
+                      type="text"
+                      value={formData.linkedin}
+                      onChange={(e) =>
+                        setFormData({ ...formData, linkedin: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div className="col-lg-6 col-12 p-2">
+                    <InputField
+                      label="instagram"
+                      id="instagram"
+                      name="instagram"
+                      type="text"
+                      value={formData.instagram}
+                      onChange={(e) =>
+                        setFormData({ ...formData, instagram: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div className="col-lg-6 col-12 p-2">
+                    <InputField
+                      label="facebook"
+                      id="facebook"
+                      name="facebook"
+                      type="text"
+                      value={formData.facebook}
+                      onChange={(e) =>
+                        setFormData({ ...formData, facebook: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div className="col-lg-6 col-12 p-2">
+                    <InputField
+                      label="google"
+                      id="google"
+                      name="google"
+                      type="text"
+                      value={formData.google}
+                      onChange={(e) =>
+                        setFormData({ ...formData, google: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div className="col-lg-6 col-12 p-2">
+                    <InputField
+                      label="youtube"
+                      id="youtube"
+                      name="youtube"
+                      type="text"
+                      value={formData.youtube}
+                      onChange={(e) =>
+                        setFormData({ ...formData, youtube: e.target.value })
+                      }
+                    />
                   </div>
                   <div className="col-12 p-2 mt-5 d-flex justify-content-end">
                     <SubmitButton

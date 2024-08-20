@@ -10,6 +10,7 @@ import ConfirmDeleteModal from "./../ui/ConfirmDeleteModal";
 import PageHeader from "../components/PageHeader";
 import useGetImpotedUsers from "../hooks/useGetImpotedUsers";
 import DataLoader from "../ui/DataLoader";
+import Pagination from "../ui/Pagination";
 
 export default function Investors() {
   const queryClient = useQueryClient();
@@ -17,8 +18,11 @@ export default function Investors() {
   const [file, setFile] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get("search");
+  const currentPage = searchParams.get("page") || 1;
   const [searchValue, setSearchValue] = useState(search || "");
-  const { data: investors, isLoading } = useGetImpotedUsers();
+  const { data: investors, isLoading } = useGetImpotedUsers({
+    page: currentPage
+  });
   const [showModal, setShowModal] = useState(false);
   const [rowId, setRowId] = useState(null);
 
@@ -155,15 +159,18 @@ export default function Investors() {
                       )}
                     </form>
                   </div>
-                  {investors?.length > 0 ? (
+                  {investors?.count > 0 ? (
                     <>
                       <div className="table-container">
-                        <DataTable value={investors}>
+                        <DataTable value={investors.data}>
                           <Column field="id" header="م" />
                           <Column field="national_id" header="الرقم المدني" />
                           <Column body={deleteTemplate} />
                         </DataTable>
                       </div>
+                      {investors?.count > 10 && (
+                        <Pagination count={investors?.count} />
+                      )}
                     </>
                   ) : (
                     <div className="empty_data">

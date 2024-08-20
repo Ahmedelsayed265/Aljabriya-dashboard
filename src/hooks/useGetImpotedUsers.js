@@ -2,15 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "../utils/axiosInstance";
 import { useSearchParams } from "react-router-dom";
 
-export default function useGetImpotedUsers() {
+export default function useGetImpotedUsers({ page = 1, limit = 10 } = {}) {
   const [searchParms] = useSearchParams();
   const search = searchParms.get("search");
 
   const { isLoading, data, error } = useQuery({
-    queryKey: ["imported-users", search],
+    queryKey: ["imported-users", search, page],
     queryFn: async () => {
       try {
-        let url = "/getUserFromImport";
+        let url = `/getUserFromImport?page=${page}&limit=${limit}`;
 
         if (search) {
           url += `&search=${encodeURIComponent(search)}`;
@@ -18,7 +18,10 @@ export default function useGetImpotedUsers() {
 
         const res = await axiosInstance.get(url);
         if (res.status === 200) {
-          return res.data.data;
+          return {
+            data: res.data.data.data,
+            count: res.data.data?.total
+          };
         }
       } catch (error) {
         console.error("Error fetching users:", error.message);
