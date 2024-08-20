@@ -132,7 +132,7 @@ export default function Investors() {
                           onChange={(e) => setSearchValue(e.target.value)}
                         />
                       </div>
-                      {investors?.length > 0 && (
+                      {investors?.count > 0 && (
                         <button type="button" disabled={loading}>
                           <label
                             htmlFor="file"

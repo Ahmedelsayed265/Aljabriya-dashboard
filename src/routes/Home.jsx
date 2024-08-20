@@ -46,7 +46,7 @@ export default function Home() {
           <div className="col-12 p-2">
             <div className="inner_card">
               <div className="header">
-                <h1>القرعات الفعالة</h1>
+                <h1>القرعات </h1>
                 <form className="search_form" onSubmit={handleSearchActive}>
                   <div className="input_field">
                     <img src="/assets/images/search.svg" alt="searchIcon" />
