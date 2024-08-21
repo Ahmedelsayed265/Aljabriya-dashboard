@@ -10,7 +10,7 @@ export default function SwitchAbility({ rowData }) {
   const queryClient = useQueryClient();
 
   const [isChecked, setIsChecked] = useState(
-    rowData.does_he_comply_with_the_conditions === 1 ? true : false
+    Number(rowData.does_he_comply_with_the_conditions) === 1 ? true : false
   );
 
   const handleChange = async () => {

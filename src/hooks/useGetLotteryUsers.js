@@ -1,16 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "../utils/axiosInstance";
 
-export default function useGetLotteryUsers(id) {
+export default function useGetLotteryUsers(id, currentPage) {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["lottery-users", id],
+    queryKey: ["lottery-users", id, currentPage],
     queryFn: async () => {
       try {
-        const res = await axiosInstance.post("/getLotteriesUsers", {
-          lottery_id: id
-        });
+        const res = await axiosInstance.post(
+          `/getLotteriesUsers?page=${currentPage}`,
+          {
+            lottery_id: id
+          }
+        );
         if (res.status === 200) {
-          return res.data.data;
+          return {
+            data: res.data.data.data,
+            count: res.data.data.total
+          };
         }
       } catch (error) {
         console.error("Error fetching profile:", error.message);

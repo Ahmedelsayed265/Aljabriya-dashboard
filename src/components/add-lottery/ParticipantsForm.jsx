@@ -1,20 +1,22 @@
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import useGetLotteryUsers from "../../hooks/useGetLotteryUsers";
-import PaginationNumbers from "./../../ui/PaginationNumbers";
 import DataLoader from "./../../ui/DataLoader";
-import SwitchAbility from "../SwitchAbility";
+// import SwitchAbility from "../SwitchAbility";
+import Pagination from "./../../ui/Pagination";
 
 export default function ParticipantsForm({ setForm }) {
   const { id } = useParams();
-  const { data: users, isLoading } = useGetLotteryUsers(id);
+  const [searchParams] = useSearchParams();
+  const currentPage = searchParams.get("page") || 1;
+  const { data: users, isLoading } = useGetLotteryUsers(id, currentPage);
 
   const statusTemplate = (rowData) => {
     return (
       <img
         src={`${
-          rowData.does_he_comply_with_the_conditions
+          Number(rowData.does_he_comply_with_the_conditions)
             ? "/assets/images/check.svg"
             : "/assets/images/cross.svg"
         }`}
@@ -27,9 +29,9 @@ export default function ParticipantsForm({ setForm }) {
     return <span>{rowData.category.title}</span>;
   };
 
-  const switchStatus = (rowData) => {
-    return <SwitchAbility rowData={rowData} userId={rowData.id} />;
-  };
+  // const switchStatus = (rowData) => {
+  //   return <SwitchAbility rowData={rowData} userId={rowData.id} />;
+  // };
 
   return (
     <form className="form_ui">
@@ -37,10 +39,10 @@ export default function ParticipantsForm({ setForm }) {
         <div className="col-12 p-2">
           {isLoading ? (
             <DataLoader />
-          ) : users && users?.length > 0 ? (
+          ) : users && users?.data?.length > 0 ? (
             <>
               <div className="table-container">
-                <DataTable value={users}>
+                <DataTable value={users?.data}>
                   <Column field="id" header="ID" />
                   <Column field="full_name" header="الاسم" />
                   <Column field="mobile" header="رقم الموبايل" />
@@ -48,12 +50,12 @@ export default function ParticipantsForm({ setForm }) {
                   <Column field="national_id" header="الرقم المدني" />
                   <Column field="box_id" header="رقم الصندوق" />
                   <Column body={categoryTemplate} header="التصنيف" />
-                  <Column field="age" header="السن" />
+                  {/* <Column field="age" header="السن" /> */}
                   <Column body={statusTemplate} header="مطابق للشروط" />
-                  <Column body={switchStatus} />
+                  {/* <Column body={switchStatus} /> */}
                 </DataTable>
               </div>
-              {users?.count > 10 && <PaginationNumbers count={users?.count} />}
+              {users?.count > 10 && <Pagination count={users?.count} />}
             </>
           ) : (
             <div className="no-data">لا يوجد مشتركين حتى الان</div>
